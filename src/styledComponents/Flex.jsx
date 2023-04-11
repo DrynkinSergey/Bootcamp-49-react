@@ -8,6 +8,7 @@ const StyledFlex = styled.div`
 	align-items: ${props => props.items || 'stretch'};
 	gap: ${props => props.gap || '0'};
 	height: ${props => props.height || 'auto'};
+	width: 100%;
 `
 export const Flex = props => {
 	return <StyledFlex {...props} />
