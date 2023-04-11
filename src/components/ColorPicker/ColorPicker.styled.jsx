@@ -5,6 +5,7 @@ export const StyledBackgroundTheme = styled.div`
 	place-content: center;
 	height: 100vh;
 	transition: background-color 0.5s linear;
+	background-color: ${props => props.selectedColor};
 `
 export const StyledColorPalette = styled.div`
 	text-align: center;
@@ -16,9 +17,8 @@ export const StyledColor = styled.li`
 	border-radius: 8px;
 	cursor: pointer;
 	transition: all 0.5s ease;
-	&:hover {
-		background-color: lightcyan;
-	}
+	color: black;
+	background-color: ${props => props.hoverColor};
 `
 export const StyledColorsList = styled.ul`
 	padding: 20px 0;

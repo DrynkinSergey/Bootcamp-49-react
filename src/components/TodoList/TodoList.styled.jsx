@@ -14,7 +14,7 @@ export const StyledTodoList = styled.ul`
 	gap: 20px;
 	flex-direction: column;
 	width: 70vw;
-	padding: 40px 20px;
+	padding: 140px 20px;
 	margin: 0 auto;
 `
 export const StyledInput = styled.input`
