@@ -1,20 +1,20 @@
 import React from 'react'
 import {
-	BackgroundTheme,
-	ColorPalette,
-	Color,
-	ColorsList,
+	StyledBackgroundTheme,
+	StyledColorPalette,
+	StyledColor,
+	StyledColorsList,
 } from './ColorPicker.styled'
 export const ColorPicker = ({ colors }) => {
 	return (
-		<BackgroundTheme>
-			<ColorPalette>
-				<ColorsList>
+		<StyledBackgroundTheme>
+			<StyledColorPalette>
+				<StyledColorsList>
 					{colors.map((item, index) => (
-						<Color key={item.id}>{item.color}</Color>
+						<StyledColor key={item.id}>{item.color}</StyledColor>
 					))}
-				</ColorsList>
-			</ColorPalette>
-		</BackgroundTheme>
+				</StyledColorsList>
+			</StyledColorPalette>
+		</StyledBackgroundTheme>
 	)
 }

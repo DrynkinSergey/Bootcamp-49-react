@@ -1,15 +1,15 @@
 import styled from 'styled-components'
 
-export const BackgroundTheme = styled.div`
+export const StyledBackgroundTheme = styled.div`
 	display: grid;
 	place-content: center;
 	height: 100vh;
 	transition: background-color 0.5s linear;
 `
-export const ColorPalette = styled.div`
+export const StyledColorPalette = styled.div`
 	text-align: center;
 `
-export const Color = styled.li`
+export const StyledColor = styled.li`
 	list-style: none;
 	border: 3px solid black;
 	padding: 10px 15px;
@@ -20,7 +20,7 @@ export const Color = styled.li`
 		background-color: lightcyan;
 	}
 `
-export const ColorsList = styled.ul`
+export const StyledColorsList = styled.ul`
 	padding: 20px 0;
 	display: flex;
 	gap: 10px;
