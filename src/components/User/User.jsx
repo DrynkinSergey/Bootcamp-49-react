@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import css from './User.module.scss'
+import { StyledFirstName, StyledUserItem } from './User.styled'
+import { StyledButton } from '../../App'
 export const User = props => {
-	const { firstName, lastName, age, gender, email, image, phone } = props
-	const name = 'alex'
+	const { firstName, lastName, age, gender, email, image, phone, id } = props
 	const getClasses = gender => {
 		switch (gender) {
 			case 'male':
@@ -16,14 +17,15 @@ export const User = props => {
 				break
 		}
 	}
+
 	// console.log(`Моє ім'я це : ${name}`)
 
 	return (
-		<li className={`${css.userItem} ${getClasses(gender)} `}>
+		<StyledUserItem gender={gender} id={id}>
 			<div>
 				<img src={image} alt='userImg' />
 			</div>
-			<h3 className={css.firstName}>{firstName}</h3>
+			<StyledFirstName>{firstName}</StyledFirstName>
 			<h3>{lastName}</h3>
 			<div className={css.userExtraInfo}>
 				<h4>Email:{email}</h4>
@@ -31,11 +33,15 @@ export const User = props => {
 				<h4>Gender: {gender}</h4>
 				<h4>Age: {age}</h4>
 			</div>
-		</li>
+			<StyledButton size='100px' dashed>
+				Delete
+			</StyledButton>
+		</StyledUserItem>
 	)
 }
 
 User.propTypes = {
+	id: PropTypes.number,
 	firstName: PropTypes.string.isRequired,
 	lastName: PropTypes.string,
 	age: PropTypes.number.isRequired,

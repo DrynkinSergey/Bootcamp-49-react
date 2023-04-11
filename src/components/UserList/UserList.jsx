@@ -2,21 +2,22 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './UserList.module.scss'
 import { User } from '../User/User'
+import styled from 'styled-components'
+
+const StyledUserList = styled.ul`
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	padding: 100px 40px;
+`
 
 export const UserList = ({ usersData }) => {
-	console.log(styles)
-	// const styles = {
-	// 	display: 'flex',
-	// 	flexWrap: 'wrap',
-	// 	gap: '20px',
-	// 	padding: '100px 40px',
-	// }
 	return (
-		<ul className={styles.userList}>
+		<StyledUserList>
 			{usersData.map(user => (
 				<User key={user.id} {...user} />
 			))}
-		</ul>
+		</StyledUserList>
 	)
 }
 
