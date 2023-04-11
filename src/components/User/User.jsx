@@ -1,5 +1,5 @@
 import React from 'react'
-
+import PropTypes from 'prop-types'
 export const User = props => {
 	const { firstName, lastName, age, gender, email, image, phone } = props
 	return (
@@ -18,6 +18,17 @@ export const User = props => {
 		</li>
 	)
 }
+
+User.propTypes = {
+	firstName: PropTypes.string.isRequired,
+	lastName: PropTypes.string,
+	age: PropTypes.number.isRequired,
+	gender: PropTypes.string,
+	email: PropTypes.string,
+	image: PropTypes.string,
+	phone: PropTypes.string,
+}
+
 // {
 //   "id": 1,
 //   "firstName": "Terry",
