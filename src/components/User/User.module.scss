@@ -1,0 +1,31 @@
+.userItem {
+	border: 2px solid black;
+	padding: 20px 10px;
+	border-radius: 12px;
+	box-shadow: 4px 4px 2px 3px rgb(0, 0, 0, 0.3);
+	&:hover {
+		box-shadow: 0px 0px 12px 23px rgba(0, 255, 89, 0.3);
+	}
+	.firstName {
+		color: indigo;
+	}
+
+	.userExtraInfo {
+		color: blue;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+}
+.blue {
+	background-color: lightblue;
+}
+.pink {
+	background-color: rgb(248, 79, 214);
+}
+.red {
+	background-color: rgb(250, 59, 56);
+}
+.title {
+	color: red;
+}

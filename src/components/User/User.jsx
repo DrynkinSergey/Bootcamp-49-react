@@ -1,15 +1,31 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import css from './User.module.scss'
 export const User = props => {
 	const { firstName, lastName, age, gender, email, image, phone } = props
+	const name = 'alex'
+	const getClasses = gender => {
+		switch (gender) {
+			case 'male':
+				return css.blue
+			case 'female':
+				return css.pink
+			case 'robot':
+				return css.red
+			default:
+				break
+		}
+	}
+	// console.log(`Моє ім'я це : ${name}`)
+
 	return (
-		<li>
+		<li className={`${css.userItem} ${getClasses(gender)} `}>
 			<div>
 				<img src={image} alt='userImg' />
 			</div>
-			<h3>{firstName}</h3>
+			<h3 className={css.firstName}>{firstName}</h3>
 			<h3>{lastName}</h3>
-			<div>
+			<div className={css.userExtraInfo}>
 				<h4>Email:{email}</h4>
 				<h4>Phone: {phone}</h4>
 				<h4>Gender: {gender}</h4>
