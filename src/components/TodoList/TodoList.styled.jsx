@@ -8,10 +8,12 @@ export const StyledTodo = styled.li`
 	box-shadow: 2px 2px 2px 2px grey;
 	padding: 10px 20px;
 	border-radius: 8px;
+	background-color: ${props => props.completed && 'lightgreen'};
 `
 export const StyledTodoList = styled.ul`
 	display: flex;
 	gap: 20px;
+	cursor: pointer;
 	flex-direction: column;
 	width: 70vw;
 	padding: 140px 20px;

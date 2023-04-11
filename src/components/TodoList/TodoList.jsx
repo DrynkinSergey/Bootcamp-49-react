@@ -46,13 +46,14 @@ export class TodoList extends Component {
 						</StyledButton>
 					</Flex>
 					{todos.map(({ todo, id, completed }) => (
-						<StyledTodo key={id}>
+						<StyledTodo completed={completed} key={id}>
 							<input
 								onChange={() => this.check(id)}
 								type='checkbox'
 								checked={completed}
 							/>
-							<span>{todo}</span>
+
+							<span onClick={() => this.check(id)}>{todo}</span>
 							<StyledButton onClick={() => this.del(id)} size='18px'>
 								Del
 							</StyledButton>
