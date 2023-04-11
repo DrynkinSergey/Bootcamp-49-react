@@ -5,6 +5,7 @@ import { Section } from './components/Modal'
 
 export const App = () => {
 	const isLoading = false
+
 	return (
 		<div>
 			<h1>UserList</h1>

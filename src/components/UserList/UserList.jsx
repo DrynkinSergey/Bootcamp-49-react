@@ -4,8 +4,14 @@ import PropTypes from 'prop-types'
 import { User } from '../User/User'
 
 export const UserList = ({ usersData }) => {
+	const styles = {
+		display: 'flex',
+		flexWrap: 'wrap',
+		gap: '20px',
+		padding: '100px 40px',
+	}
 	return (
-		<ul>
+		<ul style={styles}>
 			{usersData.map(user => (
 				<User key={user.id} {...user} />
 			))}
