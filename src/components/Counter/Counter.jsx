@@ -1,12 +1,16 @@
 import React from 'react'
 import { StyledButton, StyledCounter } from './Counter.styled'
 import { Flex } from '../../styledComponents/Flex'
-
+import PropTypes from 'prop-types'
 export class Counter extends React.Component {
 	state = {
 		counter: this.props.counter,
 		step: 1,
 		disableBtn: false,
+	}
+
+	static propTypes = {
+		counter: PropTypes.number,
 	}
 	increment = () => {
 		// this.setState({ counter: this.state.counter + this.state.step })
@@ -16,7 +20,6 @@ export class Counter extends React.Component {
 			}))
 		}
 	}
-
 	decrement = () => {
 		if (this.state.counter === -5) {
 			return

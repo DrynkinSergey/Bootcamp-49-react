@@ -19,7 +19,7 @@ export class ColorPicker extends Component {
 				<StyledColorPalette>
 					<h1>Мій колір зараз це: {currentColor}</h1>
 					<StyledColorsList>
-						{colors.map((item, index) => (
+						{colors.map(item => (
 							<StyledColor
 								onClick={() => this.setState({ currentColor: item.color })}
 								key={item.id}

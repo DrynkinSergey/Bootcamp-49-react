@@ -8,6 +8,10 @@ export const StyledTodo = styled.li`
 	box-shadow: 2px 2px 2px 2px grey;
 	padding: 10px 20px;
 	border-radius: 8px;
+	transition: all 0.4s ease-in-out;
+	cursor: pointer;
+	text-decoration: ${props => props.completed && 'line-through'};
+	background-color: ${props => props.completed && 'yellow'};
 `
 export const StyledTodoList = styled.ul`
 	display: flex;

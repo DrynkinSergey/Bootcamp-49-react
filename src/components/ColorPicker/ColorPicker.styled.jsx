@@ -5,7 +5,10 @@ export const StyledBackgroundTheme = styled.div`
 	place-content: center;
 	height: 100vh;
 	transition: background-color 0.9s linear;
-	background-color: ${props => props.bgColor};
+	background-color: ${({ bgColor }) => {
+		console.log(bgColor)
+		return bgColor
+	}};
 `
 export const StyledColorPalette = styled.div`
 	text-align: center;

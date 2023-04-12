@@ -8,11 +8,11 @@ import colors from './assets/colors.json'
 export const App = () => {
 	return (
 		<>
-			<ColorPicker colors={colors} />
+			{/* <ColorPicker colors={colors} /> */}
 			{/* <Flex items='center' justify='center' height='100vh'>
 				<Counter counter={2} title='First counter' />
 			</Flex> */}
-			{/* <TodoList todos={todos} /> */}
+			<TodoList todos={todos} title='Hello' active={true} />
 		</>
 	)
 }
