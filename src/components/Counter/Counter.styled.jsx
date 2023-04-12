@@ -4,7 +4,7 @@ export const StyledButton = styled.button`
 	padding: 10px 22px;
 	border-radius: 4px;
 	border: none;
-	font-size: ${props => props.size || '2rem'};
+	font-size: calc((2vh+2vw) * 1.3);
 	background-color: white;
 	transition: all 0.2s ease-in-out;
 	cursor: pointer;
