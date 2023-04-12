@@ -11,7 +11,7 @@ export const TodoList = ({ todos }) => {
 					<StyledInput type='text' />
 					<StyledButton>Add</StyledButton>
 				</Flex>
-				{todos.splice(4, 6).map(({ todo, id, completed }) => (
+				{todos.map(({ todo, id, completed }) => (
 					<StyledTodo key={id}>
 						<input type='checkbox' checked={completed} />
 						<span>{todo}</span>

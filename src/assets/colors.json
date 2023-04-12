@@ -22,5 +22,9 @@
 	{
 		"id": 6,
 		"color": "yellow"
+	},
+	{
+		"id": 7,
+		"color": "indigo"
 	}
 ]
