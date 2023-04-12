@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import css from './User.module.scss'
 import { StyledFirstName, StyledUserItem } from './User.styled'
-import { StyledButton } from '../../App'
+import { StyledButton } from '../Counter/Counter.styled'
+
 export const User = props => {
 	const { firstName, lastName, age, gender, email, image, phone, id } = props
 	const getClasses = gender => {

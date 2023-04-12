@@ -4,7 +4,7 @@ import styles from './UserList.module.scss'
 import { User } from '../User/User'
 import styled from 'styled-components'
 
-const StyledUserList = styled.ul`
+export const StyledUserList = styled.ul`
 	display: flex;
 	flex-wrap: wrap;
 	gap: 20px;
