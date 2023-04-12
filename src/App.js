@@ -9,9 +9,9 @@ export const App = () => {
 	return (
 		<>
 			<ColorPicker colors={colors} />
-			<Flex items='center' justify='center' height='100vh'>
+			{/* <Flex items='center' justify='center' height='100vh'>
 				<Counter counter={2} title='First counter' />
-			</Flex>
+			</Flex> */}
 			{/* <TodoList todos={todos} /> */}
 		</>
 	)
