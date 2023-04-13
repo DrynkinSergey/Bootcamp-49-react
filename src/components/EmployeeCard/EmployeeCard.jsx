@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-
+import PropTypes from 'prop-types'
 const UserCard = styled.li`
 	display: flex;
 	gap: 10px;
@@ -40,7 +40,11 @@ export const EmployeeCard = ({
 	bio,
 	skills,
 	isOpenToWork,
+	onDelete,
 }) => {
+	const handleDelete = () => {
+		onDelete(id)
+	}
 	return (
 		<UserCard open={isOpenToWork}>
 			<h3>{name}</h3>
@@ -54,7 +58,16 @@ export const EmployeeCard = ({
 				))}
 			</ul>
 			<h3>{isOpenToWork ? 'openToWork' : 'dont disturb'}</h3>
-			<button>Delete</button>
+			<button onClick={handleDelete}>Delete</button>
 		</UserCard>
 	)
+}
+
+EmployeeCard.propTypes = {
+	id: PropTypes.number,
+	name: PropTypes.string,
+	email: PropTypes.string,
+	bio: PropTypes.string,
+	skills: PropTypes.array,
+	isOpenToWork: PropTypes.bool,
 }

@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
-import { LoginForm } from './components/LoginForm/LoginForm'
-import { Flex } from './styledComponents/Flex'
 import { Employees } from './components/Employees/Employees'
+import usersJson from './assets/employee.json'
 
 export class App extends Component {
-	login = data => {
-		console.log(`Congratulation!!! ${data.username}`)
+	state = {
+		users: usersJson,
+	}
+	handleDelete = id => {
+		console.log(id)
 	}
 	render() {
+		const { users } = this.state
 		return (
 			<>
-				<Flex center100vh>
-					<LoginForm login={this.login} />
-				</Flex>
+				<Employees users={users} onDelete={this.handleDelete} />
 			</>
 		)
 	}
