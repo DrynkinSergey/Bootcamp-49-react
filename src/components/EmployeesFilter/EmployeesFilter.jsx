@@ -19,11 +19,18 @@ const Flex = styled.div`
 	gap: 10px;
 	flex-direction: ${props => (props.column ? 'column' : 'row')};
 `
-export const EmployeesFilter = () => {
+export const EmployeesFilter = ({
+	onChangeFilter,
+	activeSkill,
+	onChangeSkill,
+}) => {
 	return (
 		<Filters>
 			<Flex column>
-				<StyledInput type='text' />
+				<StyledInput
+					type='text'
+					onChange={e => onChangeFilter(e.target.value)}
+				/>
 				<label htmlFor=''>
 					<input type='checkbox' />
 					<span> isAvailable</span>
@@ -33,7 +40,13 @@ export const EmployeesFilter = () => {
 				{skilsList.map(skill => (
 					<div key={skill.value}>
 						<label>
-							<input name='skil' type='radio' value={skill.value} />
+							<input
+								name='skil'
+								type='radio'
+								checked={skill.value === activeSkill}
+								onChange={() => onChangeSkill(skill.value)}
+								value={skill.value}
+							/>
 							<span> {skill.label}</span>
 						</label>
 					</div>

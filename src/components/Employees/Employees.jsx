@@ -3,10 +3,20 @@ import { EmployeesFilter } from '../EmployeesFilter/EmployeesFilter'
 import { EmployeeList } from '../EmployeeList/EmployeeList'
 import PropTypes from 'prop-types'
 
-export const Employees = ({ users, onDelete }) => {
+export const Employees = ({
+	users,
+	onDelete,
+	onChangeFilter,
+	onChangeSkill,
+	activeSkill,
+}) => {
 	return (
 		<div>
-			<EmployeesFilter />
+			<EmployeesFilter
+				activeSkill={activeSkill}
+				onChangeFilter={onChangeFilter}
+				onChangeSkill={onChangeSkill}
+			/>
 			<EmployeeList users={users} onDelete={onDelete} />
 		</div>
 	)

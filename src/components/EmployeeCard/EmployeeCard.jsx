@@ -42,9 +42,6 @@ export const EmployeeCard = ({
 	isOpenToWork,
 	onDelete,
 }) => {
-	const handleDelete = () => {
-		onDelete(id)
-	}
 	return (
 		<UserCard open={isOpenToWork}>
 			<h3>{name}</h3>
@@ -58,7 +55,7 @@ export const EmployeeCard = ({
 				))}
 			</ul>
 			<h3>{isOpenToWork ? 'openToWork' : 'dont disturb'}</h3>
-			<button onClick={handleDelete}>Delete</button>
+			<button onClick={() => onDelete(id)}>Delete</button>
 		</UserCard>
 	)
 }
