@@ -8,29 +8,62 @@ export class App extends Component {
 		filterStr: '',
 		activeSkill: 'all',
 	}
+
+	////////////////////////     Видалення користувача по ід      //////////////////////////
 	handleDelete = id => {
 		this.setState({ users: this.state.users.filter(user => user.id !== id) })
 	}
+	////////////////////////     Зміна фільтру і запис до стейту     //////////////////////////
+
 	handleSetFilter = filterStr => {
 		this.setState({ filterStr })
 	}
+
+	////////////////////////     Зміна радіо баттону     //////////////////////////
+
 	handleChangeSkill = activeSkill => {
 		this.setState({ activeSkill })
 	}
-	render() {
-		const { users, filterStr, activeSkill } = this.state
-		const filteredData = users
-			.filter(user => user.skills.includes(activeSkill))
-			.filter(
+	////////////////////////    Функція, котра робить фільтр від умов     //////////////////////////
+
+	applyFilters = () => {
+		////////////////////////   Якщо по дефолту олл, тоді не виконуй пошук по скіллам а покажи всіх     //////////////////////////
+
+		if (this.state.activeSkill === 'all') {
+			return this.state.users.filter(
 				user =>
-					user.name.toLowerCase().includes(filterStr.toLowerCase()) ||
-					user.email.toLowerCase().includes(filterStr.toLowerCase())
+					user.name
+						.toLowerCase()
+						.includes(this.state.filterStr.toLowerCase()) ||
+					user.email.toLowerCase().includes(this.state.filterStr.toLowerCase())
 			)
+		} else {
+			return this.state.users
+				.filter(user => user.skills.includes(this.state.activeSkill))
+				.filter(
+					////////////////////////   Перевірка і фільтр по емейлу та імені    //////////////////////////
+
+					user =>
+						user.name
+							.toLowerCase()
+							.includes(this.state.filterStr.toLowerCase()) ||
+						user.email
+							.toLowerCase()
+							.includes(this.state.filterStr.toLowerCase())
+				)
+		}
+	}
+	render() {
+		const { filterStr, activeSkill } = this.state
 
 		return (
 			<>
 				<Employees
-					users={filteredData}
+					////////////////////////   Прокидаємо юзерів відфільтрованих, викликом функції    //////////////////////////
+
+					users={this.applyFilters()}
+					////////////////////////   Прокидаємо всі  функції   //////////////////////////
+
 					activeSkill={activeSkill}
 					onChangeFilter={this.handleSetFilter}
 					onDelete={this.handleDelete}
