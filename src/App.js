@@ -4,5 +4,11 @@ import { Flex } from './styledComponents/Flex'
 import { Employees } from './components/Employees/Employees'
 
 export const App = () => {
-	return <Employees />
+	return (
+		<>
+			<Flex center100vh>
+				<LoginForm />
+			</Flex>
+		</>
+	)
 }
