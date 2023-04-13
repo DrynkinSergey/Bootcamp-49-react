@@ -1,5 +1,11 @@
 import React from 'react'
+import { PostList } from './Components/MustToBe/PostList'
 
 export const App = () => {
-	return <div>App</div>
+	return (
+		<>
+			<h1>We a create our first components</h1>
+			<PostList />
+		</>
+	)
 }
