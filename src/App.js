@@ -1,5 +1,7 @@
 import React from 'react'
 import { PostList } from './Components/MustToBe/PostList'
+// import { PostList } from './Components/MustToBe copy/PostList'
+
 import postsJson from './assets/posts.json'
 export class App extends React.Component {
 	state = {
