@@ -22,17 +22,21 @@ const Flex = styled.div`
 export const EmployeesFilter = ({
 	onChangeFilter,
 	activeSkill,
+	onInputChange,
 	onChangeSkill,
+	filterStr,
+	isOpen,
 }) => {
 	return (
 		<Filters>
 			<Flex column>
 				<StyledInput
 					type='text'
+					value={filterStr}
 					onChange={e => onChangeFilter(e.target.value)}
 				/>
 				<label htmlFor=''>
-					<input type='checkbox' />
+					<input type='checkbox' checked={isOpen} onChange={onInputChange} />
 					<span> isAvailable</span>
 				</label>
 			</Flex>

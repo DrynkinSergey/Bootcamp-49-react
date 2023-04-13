@@ -4,8 +4,11 @@ import { EmployeeList } from '../EmployeeList/EmployeeList'
 import PropTypes from 'prop-types'
 
 export const Employees = ({
+	filterStr,
+	isOpen,
 	users,
 	onDelete,
+	onInputChange,
 	onChangeFilter,
 	onChangeSkill,
 	activeSkill,
@@ -13,9 +16,12 @@ export const Employees = ({
 	return (
 		<div>
 			<EmployeesFilter
+				onInputChange={onInputChange}
 				activeSkill={activeSkill}
 				onChangeFilter={onChangeFilter}
 				onChangeSkill={onChangeSkill}
+				isOpen={isOpen}
+				filterStr={filterStr}
 			/>
 			<EmployeeList users={users} onDelete={onDelete} />
 		</div>

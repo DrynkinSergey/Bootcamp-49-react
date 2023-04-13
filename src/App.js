@@ -7,6 +7,7 @@ export class App extends Component {
 		users: usersJson,
 		filterStr: '',
 		activeSkill: 'all',
+		isOpen: false,
 	}
 
 	////////////////////////     Видалення користувача по ід      //////////////////////////
@@ -26,35 +27,36 @@ export class App extends Component {
 	}
 	////////////////////////    Функція, котра робить фільтр від умов     //////////////////////////
 
+	handleToggleCheckbox = () => {
+		this.setState({ isOpen: !this.state.isOpen })
+	}
+
 	applyFilters = () => {
 		////////////////////////   Якщо по дефолту олл, тоді не виконуй пошук по скіллам а покажи всіх     //////////////////////////
 
-		if (this.state.activeSkill === 'all') {
-			return this.state.users.filter(
+		return this.state.users
+			.filter(user => {
+				if (this.state.isOpen) {
+					return user.isOpenToWork === true
+				} else return user
+			})
+			.filter(user => {
+				if (this.state.activeSkill === 'all') {
+					return user
+				}
+				return user.skills.includes(this.state.activeSkill)
+			})
+			.filter(
+				////////////////////////   Перевірка і фільтр по емейлу та імені    //////////////////////////
 				user =>
 					user.name
 						.toLowerCase()
 						.includes(this.state.filterStr.toLowerCase()) ||
 					user.email.toLowerCase().includes(this.state.filterStr.toLowerCase())
 			)
-		} else {
-			return this.state.users
-				.filter(user => user.skills.includes(this.state.activeSkill))
-				.filter(
-					////////////////////////   Перевірка і фільтр по емейлу та імені    //////////////////////////
-
-					user =>
-						user.name
-							.toLowerCase()
-							.includes(this.state.filterStr.toLowerCase()) ||
-						user.email
-							.toLowerCase()
-							.includes(this.state.filterStr.toLowerCase())
-				)
-		}
 	}
 	render() {
-		const { filterStr, activeSkill } = this.state
+		const { filterStr, activeSkill, isOpen } = this.state
 
 		return (
 			<>
@@ -63,8 +65,10 @@ export class App extends Component {
 
 					users={this.applyFilters()}
 					////////////////////////   Прокидаємо всі  функції   //////////////////////////
-
+					isOpen={isOpen}
+					filterStr={filterStr}
 					activeSkill={activeSkill}
+					onInputChange={this.handleToggleCheckbox}
 					onChangeFilter={this.handleSetFilter}
 					onDelete={this.handleDelete}
 					onChangeSkill={this.handleChangeSkill}
