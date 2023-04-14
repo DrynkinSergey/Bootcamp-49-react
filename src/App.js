@@ -6,7 +6,7 @@ export const App = () => {
 	return (
 		<>
 			<h1>We a create our first components</h1>
-			<h2>Hello</h2>
+			<h2>Hello </h2>
 			<PostList posts={postJson} />
 		</>
 	)
