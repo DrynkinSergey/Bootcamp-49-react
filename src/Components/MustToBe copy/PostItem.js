@@ -1,8 +1,34 @@
 import React from 'react'
 
 import styled from 'styled-components'
-export const PostItem = ({ id, userName, title, body, reactions }) => {
-	return <Card></Card>
+import { AiFillHeart } from 'react-icons/ai'
+import { PostButtons } from './PostButtons'
+
+export const PostItem = ({
+	id,
+	userName,
+	title,
+	body,
+	reactions,
+	onDeletePost,
+	onLiked,
+}) => {
+	return (
+		<Card>
+			<h3>{userName}</h3>
+			<h4>{title}</h4>
+			<h4>{body}</h4>
+			<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+				<span style={{ cursor: 'pointer' }} onClick={() => onLiked(id)}>
+					<span style={{ color: 'red' }}>
+						<AiFillHeart />
+					</span>
+					{reactions}
+				</span>
+				<PostButtons onDeletePost={onDeletePost} id={id} />
+			</div>
+		</Card>
+	)
 }
 
 const Card = styled.li`

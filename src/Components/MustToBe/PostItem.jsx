@@ -2,16 +2,17 @@ import React from 'react'
 import { HiHeart } from 'react-icons/hi'
 import { PostButtons } from './PostButtons'
 import styled from 'styled-components'
-export const PostItem = ({ id, userName, body, title, reactions }) => {
+export const PostItem = props => {
+	console.log(props)
 	return (
 		<Card>
-			<h3>{userName}</h3>
+			{/* <h3>{userName}</h3>
 			<h4>{title}</h4>
 			<span>{body}</span>
 			<div style={{ color: 'red' }}>
 				<HiHeart />
 				{reactions}
-			</div>
+			</div> */}
 			<PostButtons />
 		</Card>
 	)

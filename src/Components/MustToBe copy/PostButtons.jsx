@@ -1,5 +1,5 @@
 import React from 'react'
 
-export const PostButtons = () => {
-	return <div>Delete</div>
+export const PostButtons = ({ onDeletePost, id }) => {
+	return <button onClick={() => onDeletePost(id)}>Delete</button>
 }
