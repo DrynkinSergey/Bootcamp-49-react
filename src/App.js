@@ -7,6 +7,8 @@ export const App = () => {
 		<>
 			<h1>We a create our first components</h1>
 			<PostList posts={postJson} />
+
+			
 		</>
 	)
 }
