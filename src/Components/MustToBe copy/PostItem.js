@@ -1,7 +1,7 @@
 import React from 'react'
 
 import styled from 'styled-components'
-export const PostItem = () => {
+export const PostItem = ({ id, userName, title, body, reactions }) => {
 	return <Card></Card>
 }
 

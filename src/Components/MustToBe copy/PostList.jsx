@@ -1,8 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
+import { PostItem } from './PostItem'
 
-export const PostList = () => {
-	return <></>
+export const PostList = ({ posts }) => {
+	return (
+		<>
+			<PostsList>
+				{posts.map(post => (
+					<PostItem key={post.id} {...post} /> // {...post} =>  {id, userName, title, body, reactions}
+				))}
+			</PostsList>
+		</>
+	)
 }
 const PostsList = styled.ul`
 	display: grid;
