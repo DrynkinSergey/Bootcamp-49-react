@@ -1,11 +1,48 @@
 import React from 'react'
+import styled from 'styled-components'
 
-export const Section = props => {
+const ModalWrapper = styled.div`
+	position: fixed;
+	inset: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.5);
+`
+
+const ModalContent = styled.div`
+	position: relative;
+	background-color: white;
+	padding: 20px;
+	overflow: hidden;
+	max-width: 1000px;
+	border-radius: 5px;
+`
+
+const CloseButton = styled.button`
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	background-color: transparent;
+	border: none;
+	font-size: 20px;
+	cursor: pointer;
+`
+
+const Modal = ({ isOpen, onClose, children, title }) => {
+	if (!isOpen) {
+		return null
+	}
+
 	return (
-		<div>
-			{/* <h1>Section name:{props.title}</h1>
-			<h1>Section data:{props.data}</h1> */}
-			{props.children}
-		</div>
+		<ModalWrapper>
+			<ModalContent>
+				{title && <h1>{title}</h1>}
+				<CloseButton onClick={onClose}>×</CloseButton>
+				{children}
+			</ModalContent>
+		</ModalWrapper>
 	)
 }
+
+export default Modal
