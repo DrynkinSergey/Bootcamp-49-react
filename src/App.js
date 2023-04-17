@@ -7,17 +7,21 @@ const USERS_KEY = 'users_key'
 
 export class App extends Component {
 	state = {
-		users,
+		users: [],
 		filterStr: '',
 		activeSkill: 'all',
 		isOpen: false,
 		showModal: false,
 	}
 
+	//null?.length
+	//[213,12,1]?.length
 	componentDidMount() {
 		const usersFromLS = localStorage.getItem(USERS_KEY)
 		if (JSON.parse(usersFromLS)?.length) {
 			this.setState({ users: JSON.parse(usersFromLS) })
+		} else {
+			this.setState({ users })
 		}
 	}
 	componentDidUpdate(prevProps, prevState) {
@@ -27,6 +31,10 @@ export class App extends Component {
 			console.log('Дані записані')
 			localStorage.setItem(USERS_KEY, JSON.stringify(this.state.users))
 		}
+	}
+
+	toggleModal = () => {
+		this.setState(prevState => ({ showModal: !prevState.showModal }))
 	}
 
 	////////////////////////     Видалення користувача по ід      //////////////////////////
@@ -79,8 +87,17 @@ export class App extends Component {
 		const { isOpen, filterStr, activeSkill, showModal } = this.state
 		return (
 			<>
-				<button>Open/close modal</button>
-				{/* <Employees
+				<button onClick={this.toggleModal}>Open/close modal</button>
+				{showModal && (
+					<Modal onClose={this.toggleModal} title='My modal'>
+						<img
+							style={{ width: '100%' }}
+							src='https://d585tldpucybw.cloudfront.net/sfimages/default-source/blogs/templates/social/reactt-light_1200x628.png?sfvrsn=43eb5f2a_2'
+							alt=''
+						/>
+					</Modal>
+				)}
+				<Employees
 					////////////////////////   Прокидаємо юзерів відфільтрованих, викликом функції    //////////////////////////
 
 					users={this.applyFilters()}
@@ -92,7 +109,7 @@ export class App extends Component {
 					onChangeFilter={this.handleSetFilter}
 					onDelete={this.handleDelete}
 					onChangeSkill={this.handleChangeSkill}
-				/> */}
+				/>
 			</>
 		)
 	}

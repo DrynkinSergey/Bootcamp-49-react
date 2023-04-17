@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 
 const ModalWrapper = styled.div`
@@ -29,16 +29,28 @@ const CloseButton = styled.button`
 	cursor: pointer;
 `
 
-const Modal = ({ onClose, children, title }) => {
-	return (
-		<ModalWrapper>
-			<ModalContent>
-				{title && <h1>{title}</h1>}
-				<CloseButton onClick={onClose}>×</CloseButton>
-				{children}
-			</ModalContent>
-		</ModalWrapper>
-	)
+class Modal extends Component {
+	componentDidMount() {
+		console.log('componentDidMount')
+	}
+	componentDidUpdate() {
+		console.log('componentDidUpdate')
+	}
+	componentWillUnmount() {
+		console.log('componentWillUnmount')
+	}
+	render() {
+		const { onClose, children, title } = this.props
+		return (
+			<ModalWrapper>
+				<ModalContent>
+					{title && <h1>{title}</h1>}
+					<CloseButton onClick={onClose}>×</CloseButton>
+					{children}
+				</ModalContent>
+			</ModalWrapper>
+		)
+	}
 }
 
 export default Modal
