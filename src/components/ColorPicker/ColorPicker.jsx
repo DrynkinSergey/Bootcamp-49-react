@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PureComponent } from 'react'
 import {
 	StyledBackgroundTheme,
 	StyledColorPalette,
@@ -8,8 +8,17 @@ import {
 
 export class ColorPicker extends Component {
 	state = {
-		colors: this.props.colors,
+		colors: this.props.colors || [],
 		currentColor: 'white',
+	}
+	componentDidUpdate() {
+		console.log('update')
+	}
+
+	shouldComponentUpdate(_, nextState) {
+		// console.log(_)
+		// console.log(nextState)
+		return nextState.currentColor !== this.state.currentColor
 	}
 
 	render() {

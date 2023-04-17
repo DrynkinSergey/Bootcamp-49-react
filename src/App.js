@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { Employees } from './components/Employees/Employees'
 import users from './assets/employee.json'
+import colors from './assets/colors.json'
 import Modal from './components/Modal'
 import Banner from './components/Banner'
+import { ColorPicker } from './components/ColorPicker/ColorPicker'
 
 const USERS_KEY = 'users_key'
 
@@ -17,22 +19,22 @@ export class App extends Component {
 
 	//null?.length
 	//[213,12,1]?.length
-	// componentDidMount() {
-	// 	const usersFromLS = localStorage.getItem(USERS_KEY)
-	// 	if (JSON.parse(usersFromLS)?.length) {
-	// 		this.setState({ users: JSON.parse(usersFromLS) })
-	// 	} else {
-	// 		this.setState({ users })
-	// 	}
-	// }
-	// componentDidUpdate(prevProps, prevState) {
-	// 	if (prevState.users.length !== this.state.users.length) {
-	// 		// console.log('PrevState =>>>> ', prevState.users.length)
-	// 		// console.log('state =>>>> ', this.state.users.length)
-	// 		console.log('Дані записані')
-	// 		localStorage.setItem(USERS_KEY, JSON.stringify(this.state.users))
-	// 	}
-	// }
+	componentDidMount() {
+		const usersFromLS = localStorage.getItem(USERS_KEY)
+		if (JSON.parse(usersFromLS)?.length) {
+			this.setState({ users: JSON.parse(usersFromLS) })
+		} else {
+			this.setState({ users })
+		}
+	}
+	componentDidUpdate(prevProps, prevState) {
+		if (prevState.users.length !== this.state.users.length) {
+			// console.log('PrevState =>>>> ', prevState.users.length)
+			// console.log('state =>>>> ', this.state.users.length)
+			console.log('Дані записані')
+			localStorage.setItem(USERS_KEY, JSON.stringify(this.state.users))
+		}
+	}
 
 	toggleModal = () => {
 		this.setState(prevState => ({ showModal: !prevState.showModal }))
@@ -88,8 +90,9 @@ export class App extends Component {
 		const { isOpen, filterStr, activeSkill, showModal } = this.state
 		return (
 			<>
-				<button onClick={this.toggleModal}>Open/close modal</button>
-				<Banner />
+				<ColorPicker colors={colors} />
+
+				{/* <button onClick={this.toggleModal}>Open/close modal</button>
 
 				{showModal && (
 					<Modal onClose={this.toggleModal} title='My modal'>
@@ -99,9 +102,9 @@ export class App extends Component {
 							alt=''
 						/>
 					</Modal>
-				)}
+				)} */}
 
-				<Employees
+				{/* <Employees
 					////////////////////////   Прокидаємо юзерів відфільтрованих, викликом функції    //////////////////////////
 
 					users={this.applyFilters()}
@@ -113,7 +116,7 @@ export class App extends Component {
 					onChangeFilter={this.handleSetFilter}
 					onDelete={this.handleDelete}
 					onChangeSkill={this.handleChangeSkill}
-				/>
+				/> */}
 			</>
 		)
 	}
