@@ -6,7 +6,6 @@ export const StyledBackgroundTheme = styled.div`
 	height: 100vh;
 	transition: background-color 0.9s linear;
 	background-color: ${({ bgColor }) => {
-		console.log(bgColor)
 		return bgColor
 	}};
 `

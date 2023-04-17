@@ -1,13 +1,32 @@
 import React, { Component } from 'react'
 import { Employees } from './components/Employees/Employees'
-import usersJson from './assets/employee.json'
+import users from './assets/employee.json'
 import Modal from './components/Modal'
+
+const USERS_KEY = 'users_key'
 
 export class App extends Component {
 	state = {
-		users: usersJson,
+		users,
 		filterStr: '',
 		activeSkill: 'all',
+		isOpen: false,
+		showModal: false,
+	}
+
+	componentDidMount() {
+		const usersFromLS = localStorage.getItem(USERS_KEY)
+		if (JSON.parse(usersFromLS)?.length) {
+			this.setState({ users: JSON.parse(usersFromLS) })
+		}
+	}
+	componentDidUpdate(prevProps, prevState) {
+		if (prevState.users.length !== this.state.users.length) {
+			// console.log('PrevState =>>>> ', prevState.users.length)
+			// console.log('state =>>>> ', this.state.users.length)
+			console.log('Дані записані')
+			localStorage.setItem(USERS_KEY, JSON.stringify(this.state.users))
+		}
 	}
 
 	////////////////////////     Видалення користувача по ід      //////////////////////////
@@ -57,17 +76,10 @@ export class App extends Component {
 			)
 	}
 	render() {
+		const { isOpen, filterStr, activeSkill, showModal } = this.state
 		return (
 			<>
-				<button>Open</button>
-				<Modal title='My modal'>
-					<img
-						style={{ width: '100%' }}
-						src='https://d585tldpucybw.cloudfront.net/sfimages/default-source/blogs/templates/social/reactt-light_1200x628.png?sfvrsn=43eb5f2a_2'
-						alt=''
-					/>
-				</Modal>
-
+				<button>Open/close modal</button>
 				{/* <Employees
 					////////////////////////   Прокидаємо юзерів відфільтрованих, викликом функції    //////////////////////////
 

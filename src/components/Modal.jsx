@@ -29,11 +29,7 @@ const CloseButton = styled.button`
 	cursor: pointer;
 `
 
-const Modal = ({ isOpen, onClose, children, title }) => {
-	if (!isOpen) {
-		return null
-	}
-
+const Modal = ({ onClose, children, title }) => {
 	return (
 		<ModalWrapper>
 			<ModalContent>
