@@ -30,23 +30,58 @@ const CloseButton = styled.button`
 `
 
 class Modal extends Component {
+	state = {
+		time: new Date().toLocaleTimeString(),
+	}
+	handleKeydown = e => {
+		if (e.key === 'Escape') {
+			console.log('Escape')
+			this.props.onClose()
+		}
+	}
+
+	onBackdropClick = e => {
+		// console.log('Закрити модалку по кліку на бекдроп')
+
+		// console.log('event target=>>>>>>>>', e.target)
+		// console.log('event Current Target=>>>>>>>>', e.currentTarget)
+		if (e.target === e.currentTarget) {
+			this.props.onClose()
+		}
+	}
+
+	intervalId = null
+	timeoutId = null
 	componentDidMount() {
-		console.log('componentDidMount')
+		document.addEventListener('keydown', this.handleKeydown)
+
+		this.intervalId = setInterval(() => {
+			this.setState({ time: new Date().toLocaleTimeString() })
+		}, 1000)
+
+		this.timeoutId = setTimeout(() => {
+			console.log('hello from modal')
+		}, 4000)
 	}
-	componentDidUpdate() {
-		console.log('componentDidUpdate')
-	}
+
+	componentDidUpdate() {}
+
 	componentWillUnmount() {
 		console.log('componentWillUnmount')
+		clearInterval(this.intervalId)
+		clearTimeout(this.timeoutId)
+		document.removeEventListener('keydown', this.handleKeydown)
 	}
+
 	render() {
 		const { onClose, children, title } = this.props
 		return (
-			<ModalWrapper>
+			<ModalWrapper onClick={this.onBackdropClick}>
 				<ModalContent>
 					{title && <h1>{title}</h1>}
 					<CloseButton onClick={onClose}>×</CloseButton>
 					{children}
+					<h1>{this.state.time}</h1>
 				</ModalContent>
 			</ModalWrapper>
 		)
