@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 
 const ModalWrapper = styled.div`
@@ -28,6 +29,8 @@ const CloseButton = styled.button`
 	font-size: 20px;
 	cursor: pointer;
 `
+
+const modalDiv = document.querySelector('#modal')
 
 class Modal extends Component {
 	state = {
@@ -75,7 +78,7 @@ class Modal extends Component {
 
 	render() {
 		const { onClose, children, title } = this.props
-		return (
+		return ReactDOM.createPortal(
 			<ModalWrapper onClick={this.onBackdropClick}>
 				<ModalContent>
 					{title && <h1>{title}</h1>}
@@ -83,7 +86,8 @@ class Modal extends Component {
 					{children}
 					<h1>{this.state.time}</h1>
 				</ModalContent>
-			</ModalWrapper>
+			</ModalWrapper>,
+			modalDiv
 		)
 	}
 }

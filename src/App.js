@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import { Employees } from './components/Employees/Employees'
 import users from './assets/employee.json'
 import Modal from './components/Modal'
+import Banner from './components/Banner'
 
 const USERS_KEY = 'users_key'
 
 export class App extends Component {
 	state = {
-		users: [],
+		users,
 		filterStr: '',
 		activeSkill: 'all',
 		isOpen: false,
@@ -88,6 +89,8 @@ export class App extends Component {
 		return (
 			<>
 				<button onClick={this.toggleModal}>Open/close modal</button>
+				<Banner />
+
 				{showModal && (
 					<Modal onClose={this.toggleModal} title='My modal'>
 						<img
@@ -98,7 +101,7 @@ export class App extends Component {
 					</Modal>
 				)}
 
-				{/* <Employees
+				<Employees
 					////////////////////////   Прокидаємо юзерів відфільтрованих, викликом функції    //////////////////////////
 
 					users={this.applyFilters()}
@@ -110,7 +113,7 @@ export class App extends Component {
 					onChangeFilter={this.handleSetFilter}
 					onDelete={this.handleDelete}
 					onChangeSkill={this.handleChangeSkill}
-				/> */}
+				/>
 			</>
 		)
 	}
