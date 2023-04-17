@@ -41,6 +41,10 @@ class Modal extends Component {
 			console.log('Escape')
 			this.props.onClose()
 		}
+		if (e.key === 'm') {
+			console.log('m')
+			this.props.onClose()
+		}
 	}
 
 	onBackdropClick = e => {

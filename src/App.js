@@ -90,9 +90,7 @@ export class App extends Component {
 		const { isOpen, filterStr, activeSkill, showModal } = this.state
 		return (
 			<>
-				<ColorPicker colors={colors} />
-
-				{/* <button onClick={this.toggleModal}>Open/close modal</button>
+				<button onClick={this.toggleModal}>Open/close modal</button>
 
 				{showModal && (
 					<Modal onClose={this.toggleModal} title='My modal'>
@@ -102,7 +100,8 @@ export class App extends Component {
 							alt=''
 						/>
 					</Modal>
-				)} */}
+				)}
+				<ColorPicker title='COLORS' />
 
 				{/* <Employees
 					////////////////////////   Прокидаємо юзерів відфільтрованих, викликом функції    //////////////////////////

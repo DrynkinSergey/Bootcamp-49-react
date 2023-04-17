@@ -7,11 +7,17 @@ import {
 } from './ColorPicker.styled'
 
 export class ColorPicker extends Component {
+	static defaultProps = {
+		colors: [],
+		title: 'Its default title ',
+	}
+
 	state = {
-		colors: this.props.colors || [],
+		colors: this.props.colors,
 		currentColor: 'white',
 	}
-	componentDidUpdate() {
+
+	componentDidUpdate(prevPrev, prevState) {
 		console.log('update')
 	}
 
@@ -26,6 +32,7 @@ export class ColorPicker extends Component {
 		return (
 			<StyledBackgroundTheme bgColor={currentColor}>
 				<StyledColorPalette>
+					<h2>Title:{this.props.title}</h2>
 					<h1>Мій колір зараз це: {currentColor}</h1>
 					<StyledColorsList>
 						{colors.map(item => (
