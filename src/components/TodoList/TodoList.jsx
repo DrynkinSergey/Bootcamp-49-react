@@ -2,10 +2,11 @@ import React from 'react'
 import { StyledButton } from '../Counter/Counter.styled'
 import { StyledInput, StyledTodo, StyledTodoList } from './TodoList.styled'
 import { Flex } from '../../styledComponents/Flex'
+import todos from './../../assets/todos.json'
 import { nanoid } from 'nanoid'
 export class TodoList extends React.Component {
 	state = {
-		todos: this.props.todos,
+		todos,
 		isActive: this.props.active,
 		inputString: '',
 		error: '',
@@ -56,7 +57,6 @@ export class TodoList extends React.Component {
 	render() {
 		const { active, title } = this.props
 		const { todos, inputString, error } = this.state
-		console.log(active, title)
 		return (
 			<div>
 				<StyledTodoList>

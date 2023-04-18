@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export const Header = () => {
+export const Header = ({ title = 'header' }) => {
 	return (
 		<HeaderWrapper>
-			<h1>Countries</h1>
+			<h1>{title}</h1>
 			<form>
 				<input name='input' type='text' />
 				<button>Search</button>
