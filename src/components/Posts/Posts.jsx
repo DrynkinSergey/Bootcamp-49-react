@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import styled from 'styled-components'
 import { Comment } from 'react-loader-spinner'
 import { PostCard } from './PostCard'
 import { Header } from '../Countries/Header'
 import { toast } from 'react-toastify'
-
+import postAPI from '../../services/postsAPI'
 export class Posts extends Component {
 	state = {
 		items: [],
@@ -16,8 +15,8 @@ export class Posts extends Component {
 	componentDidMount() {
 		this.setState({ loading: true })
 		setTimeout(() => {
-			axios
-				.get('https://dummyjson.com/posts')
+			postAPI
+				.getAllPosts()
 				.then(res => {
 					toast.success('Congratulation, your data is ready!')
 					this.setState({ items: res.data.posts })
@@ -32,11 +31,16 @@ export class Posts extends Component {
 
 	componentDidUpdate(prevProps, prevState) {
 		if (prevState.query !== this.state.query) {
-			this.setState({ loading: true })
+			this.setState({ loading: true, error: '' })
 			setTimeout(() => {
-				axios
-					.get(`https://dummyjson.com/posts/search?q=${this.state.query}`)
+				postAPI
+					.getPost(this.state.query)
 					.then(res => {
+						if (!res.data.posts.length) {
+							this.setState({ error: 'Empty array', items: [] })
+							toast.error('Empty array')
+							return
+						}
 						toast.success('Congratulation, your data is ready!')
 						this.setState({ items: res.data.posts })
 					})

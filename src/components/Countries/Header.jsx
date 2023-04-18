@@ -1,9 +1,14 @@
 import React from 'react'
+import { toast } from 'react-toastify'
 import styled from 'styled-components'
 
 export const Header = ({ title = 'header', onChangeInput }) => {
 	const onSubmit = e => {
 		e.preventDefault()
+		if (!e.target.input.value) {
+			toast.warning('Empty query!')
+			return
+		}
 		const form = e.target
 		onChangeInput(form.input.value)
 		form.reset()
