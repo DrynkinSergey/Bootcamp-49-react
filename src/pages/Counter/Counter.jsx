@@ -40,7 +40,7 @@ export class Counter extends React.Component {
 				<StyledCounter>
 					<h1>{counter}</h1>
 					{counter > 5 && <h3>Congratulation!!</h3>}
-					<Flex gap='10px' justify='center'>
+					<Flex gap='20px' justify='center'>
 						<StyledButton disabled={counter === -5} onClick={this.decrement}>
 							{this.state.disableBtn ? 'Error' : 'Minus'}
 						</StyledButton>
