@@ -1,35 +1,42 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { Comment } from 'react-loader-spinner'
 import { PostCard } from './PostCard'
 import { Header } from '../Countries/Header'
 import { toast } from 'react-toastify'
 import postAPI from '../../services/postsAPI'
-export class Posts extends Component {
+
+export class Posts extends React.Component {
 	state = {
 		items: [],
 		loading: false,
 		error: '',
 		query: '',
+		page: 0,
+		totalPages: null,
 	}
 	componentDidMount() {
 		this.setState({ loading: true })
 		setTimeout(() => {
 			postAPI
-				.getAllPosts()
+				.getAllPosts(0)
 				.then(res => {
-					toast.success('Congratulation, your data is ready!')
-					this.setState({ items: res.data.posts })
+					// toast.success('Congratulation, your data is ready!')
+
+					this.setState({
+						items: res.data.posts,
+						totalPages: Math.ceil(res.data.total / res.data.limit),
+					})
 				})
 				.catch(error => {
 					this.setState({ error: error.message })
 					toast.error('Try again!')
 				})
 				.finally(this.setState({ loading: false }))
-		}, 1000)
+		}, 100)
 	}
 
-	componentDidUpdate(prevProps, prevState) {
+	componentDidUpdate(_, prevState) {
 		if (prevState.query !== this.state.query) {
 			this.setState({ loading: true, error: '' })
 			setTimeout(() => {
@@ -49,15 +56,48 @@ export class Posts extends Component {
 						toast.error('Try again!')
 					})
 					.finally(this.setState({ loading: false }))
-			}, 1000)
+			}, 100)
+		}
+		if (prevState.page !== this.state.page) {
+			this.setState({ loading: true, error: '' })
+			setTimeout(() => {
+				postAPI
+					.getAllPosts(this.state.page)
+					.then(res => {
+						if (!res.data.posts.length) {
+							this.setState({ error: 'Empty array', items: [] })
+							toast.error('Empty array')
+							return
+						}
+						toast.success('Congratulation, your data is ready!')
+						this.setState({ items: res.data.posts })
+					})
+					.catch(error => {
+						this.setState({ error: error.message })
+						toast.error('Try again!')
+					})
+					.finally(this.setState({ loading: false }))
+			}, 100)
 		}
 	}
 
+	nextPage = () => {
+		this.setState(prevState => ({ page: prevState.page + 1 }))
+	}
+	prevPage = () => {
+		this.setState(prevState => ({ page: prevState.page - 1 }))
+	}
 	handleChangeQuery = query => {
 		this.setState({ query })
 	}
 	render() {
-		const { items, loading, error, query } = this.state
+		const { items, loading, error, page, totalPages } = this.state
+		const pages = []
+		for (let i = 1; i < totalPages; i++) {
+			if (i <= 10) {
+				pages.push(i)
+			}
+		}
 		return (
 			<div>
 				<Header title='Posts' onChangeInput={this.handleChangeQuery} />
@@ -75,11 +115,32 @@ export class Posts extends Component {
 				)}
 				{error && <h1>ERRRRORR Try again!</h1>}
 				{!loading && (
-					<ListUL>
-						{items.map(post => (
-							<PostCard key={post.id} {...post} />
-						))}
-					</ListUL>
+					<>
+						<Navigate>
+							{page !== 0 && <button onClick={this.prevPage}>Prev page</button>}
+							<div style={{ display: 'flex', gap: '5px' }}>
+								{pages.map(page => (
+									<span onClick={() => this.setState({ page: page })}>
+										{page}
+									</span>
+								))}
+								...
+								<span
+									onClick={() =>
+										this.setState({ page: this.state.totalPages - 1 })
+									}
+								>
+									{this.state.totalPages}
+								</span>
+							</div>
+							<button onClick={this.nextPage}>Next page</button>
+						</Navigate>
+						<ListUL>
+							{items.map(post => (
+								<PostCard key={post.id} {...post} />
+							))}
+						</ListUL>
+					</>
 				)}
 				{/* {loading ? (
 					<Comment
@@ -108,5 +169,10 @@ const ListUL = styled.ul`
 	padding: 100px 15px;
 	justify-content: center;
 	grid-template-columns: repeat(auto-fit, minmax(450px, 500px));
+	gap: 10px;
+`
+const Navigate = styled.nav`
+	display: flex;
+	justify-content: center;
 	gap: 10px;
 `

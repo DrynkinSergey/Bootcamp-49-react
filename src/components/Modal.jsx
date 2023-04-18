@@ -33,9 +33,6 @@ const CloseButton = styled.button`
 const modalDiv = document.querySelector('#modal')
 
 class Modal extends Component {
-	state = {
-		time: new Date().toLocaleTimeString(),
-	}
 	handleKeydown = e => {
 		if (e.key === 'Escape') {
 			console.log('Escape')
@@ -88,7 +85,6 @@ class Modal extends Component {
 					{title && <h1>{title}</h1>}
 					<CloseButton onClick={onClose}>×</CloseButton>
 					{children}
-					<h1>{this.state.time}</h1>
 				</ModalContent>
 			</ModalWrapper>,
 			modalDiv
