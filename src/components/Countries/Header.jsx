@@ -1,11 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export const Header = ({ title = 'header' }) => {
+export const Header = ({ title = 'header', onChangeInput }) => {
+	const onSubmit = e => {
+		e.preventDefault()
+		const form = e.target
+		onChangeInput(form.input.value)
+		form.reset()
+	}
 	return (
 		<HeaderWrapper>
 			<h1>{title}</h1>
-			<form>
+			<form onSubmit={onSubmit}>
 				<input name='input' type='text' />
 				<button>Search</button>
 			</form>
