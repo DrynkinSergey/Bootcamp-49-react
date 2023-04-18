@@ -6,12 +6,12 @@ export const StyledTitle = styled.h1`
 	text-decoration: underline;
 `
 export const StyledLoginForm = styled.form`
-	font-size: calc((1vh + 1vw) * 1.2);
+	font-size: calc((1vh + 1vw));
 	border: 3px solid lightblue;
 	background-color: #71b4f7;
 	box-shadow: 3px 4px 7px 3px lightgray;
 	width: calc((10vh + 20vw) * 1.2);
-	padding: 90px 20px;
+	padding: 30px 20px;
 	border-radius: 12px;
 `
 export const StyledLabel = styled.label`

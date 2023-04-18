@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-
 export const StyledBackgroundTheme = styled.div`
 	display: grid;
 	place-content: center;

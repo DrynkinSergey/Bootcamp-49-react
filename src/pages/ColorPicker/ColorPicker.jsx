@@ -1,14 +1,15 @@
-import React, { Component, PureComponent } from 'react'
+import React, { Component } from 'react'
 import {
 	StyledBackgroundTheme,
 	StyledColorPalette,
 	StyledColor,
 	StyledColorsList,
 } from './ColorPicker.styled'
+import colors from '../../assets/colors.json'
 
 export class ColorPicker extends Component {
 	static defaultProps = {
-		colors: [],
+		colors: colors,
 		title: 'Its default title ',
 	}
 

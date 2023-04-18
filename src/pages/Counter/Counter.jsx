@@ -4,7 +4,7 @@ import { Flex } from '../../styledComponents/Flex'
 import PropTypes from 'prop-types'
 export class Counter extends React.Component {
 	state = {
-		counter: this.props.counter,
+		counter: 1,
 		step: 1,
 		disableBtn: false,
 	}
@@ -30,28 +30,28 @@ export class Counter extends React.Component {
 	}
 
 	reset = () => {
-		this.setState({ counter: this.props.counter })
+		this.setState({ counter: 1 })
 	}
 
 	render() {
-		// console.log(this.props)
-		//document.querySelector('.btn').addEventListener('click', ()=>)
 		const { counter } = this.state
 		return (
-			<StyledCounter>
-				<h1>{counter}</h1>
-				{counter > 5 && <h3>Congratulation!!</h3>}
-				<Flex gap='10px' justify='center'>
-					<StyledButton disabled={counter === -5} onClick={this.decrement}>
-						{this.state.disableBtn ? 'Error' : 'Minus'}
-					</StyledButton>
-					{/* <StyledButton onClick={() => console.log('1')}>minus</StyledButton> */}
-					<StyledButton onClick={this.reset}>reset</StyledButton>
-					<StyledButton disabled={counter === 10} onClick={this.increment}>
-						{counter === 10 ? 'Error' : 'Plus'}
-					</StyledButton>
-				</Flex>
-			</StyledCounter>
+			<Flex center100vh>
+				<StyledCounter>
+					<h1>{counter}</h1>
+					{counter > 5 && <h3>Congratulation!!</h3>}
+					<Flex gap='10px' justify='center'>
+						<StyledButton disabled={counter === -5} onClick={this.decrement}>
+							{this.state.disableBtn ? 'Error' : 'Minus'}
+						</StyledButton>
+						{/* <StyledButton onClick={() => console.log('1')}>minus</StyledButton> */}
+						<StyledButton onClick={this.reset}>reset</StyledButton>
+						<StyledButton disabled={counter === 10} onClick={this.increment}>
+							{counter === 10 ? 'Error' : 'Plus'}
+						</StyledButton>
+					</Flex>
+				</StyledCounter>
+			</Flex>
 		)
 	}
 }
