@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { CountryCard } from './CountryCard'
 
-export const CountryList = ({ items }) => {
+export const CountryList = ({ items = [] }) => {
 	return (
 		<List>
 			{items.map(item => (

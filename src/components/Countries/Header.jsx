@@ -1,19 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export const Header = ({ onFind }) => {
-	const onSubmit = e => {
-		e.preventDefault()
-		const form = e.target
-		onFind(form.input.value)
-		form.reset()
-	}
+export const Header = () => {
 	return (
 		<HeaderWrapper>
-			<div>Countries</div>
-			<form onSubmit={onSubmit}>
+			<h1>Countries</h1>
+			<form>
 				<input name='input' type='text' />
-				<button>find</button>
+				<button>Search</button>
 			</form>
 		</HeaderWrapper>
 	)
@@ -21,14 +15,17 @@ export const Header = ({ onFind }) => {
 const HeaderWrapper = styled.header`
 	padding: 45px 90px;
 	display: flex;
+	align-items: center;
 	justify-content: space-between;
 	background-color: lightblue;
 	font-size: 1.2rem;
 
 	input {
 		padding: 4px 15px;
+		font-size: 1.5rem;
 	}
 	button {
 		padding: 4px 15px;
+		font-size: 1.5rem;
 	}
 `
