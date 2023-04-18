@@ -1,25 +1,57 @@
 import React, { Component } from 'react'
 import { Header } from './Header'
 import { CountryList } from './CountryList'
-import axios from 'axios'
+import countriesAPI from '../../services/countryAPI'
 
 export class Countries extends Component {
 	state = {
 		items: [],
+		name: '',
+		error: null,
+		status: 'fullfiled',
 	}
 	componentDidMount() {
-		axios
-			.get(
-				'https://restcountries.com/v2/all?fields=name,capital,flags,population,region'
-			)
-			.then(res => this.setState({ items: res.data }))
+		countriesAPI.getCountries().then(res => this.setState({ items: res.data }))
 	}
+	componentDidUpdate(prevProps, prevState) {
+		if (prevState.name !== this.state.name) {
+			this.setState({ status: 'pending' })
+			countriesAPI
+				.getCountry(this.state.name)
+				.then(res => this.setState({ items: res.data, status: 'fullfiled' }))
+				.catch(error => this.setState({ error, status: 'error' }))
+		}
+	}
+	handleChangeCountry = name => {
+		this.setState({ name })
+	}
+
 	render() {
-		return (
-			<>
-				<Header />
-				<CountryList items={this.state.items} />
-			</>
-		)
+		const { status, items } = this.state
+		if (status === 'fullfiled') {
+			return (
+				<>
+					<Header onFind={this.handleChangeCountry} />
+					<CountryList items={items} />
+				</>
+			)
+		}
+
+		if (status === 'pending') {
+			return (
+				<>
+					<Header onFind={this.handleChangeCountry} />
+					<h1>Loading...</h1>
+				</>
+			)
+		}
+		if (status === 'error') {
+			return (
+				<>
+					<Header onFind={this.handleChangeCountry} />
+					<h1>Sorry its a mistake, try again!</h1>
+				</>
+			)
+		}
 	}
 }

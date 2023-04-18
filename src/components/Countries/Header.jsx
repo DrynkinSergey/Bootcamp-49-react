@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export const Header = () => {
+export const Header = ({ onFind }) => {
 	const onSubmit = e => {
 		e.preventDefault()
 		const form = e.target
-		console.log(form.input.value)
+		onFind(form.input.value)
 		form.reset()
 	}
 	return (
@@ -23,4 +23,12 @@ const HeaderWrapper = styled.header`
 	display: flex;
 	justify-content: space-between;
 	background-color: lightblue;
+	font-size: 1.2rem;
+
+	input {
+		padding: 4px 15px;
+	}
+	button {
+		padding: 4px 15px;
+	}
 `
