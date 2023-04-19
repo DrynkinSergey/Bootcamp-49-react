@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import {
 	StyledInput,
@@ -27,6 +27,21 @@ export const LoginForm = () => {
 	const [age, setAge] = useState('')
 	const [gender, setGender] = useState('')
 	const [body, setBody] = useState({})
+
+	useEffect(() => {
+		console.log(`Username => ${username}, age =>${age}`)
+	}, [username, age])
+
+	useEffect(() => {
+		if (age < 18 && age !== '') {
+			console.log('Ти дуже малий ще')
+		}
+	}, [age])
+	useEffect(() => {
+		console.log('Hello')
+	}, [])
+	useEffect(() => {}, [])
+
 	const mapState = {
 		username: setUsername,
 		email: setEmail,

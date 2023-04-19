@@ -17,7 +17,10 @@ export const App = () => {
 				<Route path='/imageFinder' element={<ImageFinder />} />
 				<Route path='/counter' element={<Counter />} />
 				<Route path='/posts' element={<Posts />} />
-				<Route path='/colorPicker' element={<ColorPicker />} />
+				<Route
+					path='/colorPicker'
+					element={<ColorPicker title='Color PICKER' />}
+				/>
 				<Route path='/login' element={<LoginForm />} />
 				<Route path='*' element={<h1>Not found</h1>} />
 			</Routes>
