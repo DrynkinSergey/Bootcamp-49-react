@@ -1,6 +1,6 @@
 import axios from 'axios'
 const LIMIT_PER_PAGE = 10
-const getAllPosts = page => {
+const getAllPosts = (page, query) => {
 	console.log(page)
 	return axios.get(
 		`https://dummyjson.com/posts/?limit=${LIMIT_PER_PAGE}&skip=${

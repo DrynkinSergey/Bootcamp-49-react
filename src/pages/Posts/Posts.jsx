@@ -15,8 +15,7 @@ export const Posts = () => {
 	const [totalPages, setTotalPages] = useState(null)
 	const isFirstRender = useRef(true)
 	const myRef = useRef(null)
-	console.log(myRef)
-	
+
 	useEffect(() => {
 		setLoading(true)
 		setTimeout(() => {
@@ -40,17 +39,17 @@ export const Posts = () => {
 	}, [])
 
 	useEffect(() => {
-		// this.setState({ loading: true, error: '' })
 		if (isFirstRender.current) {
 			isFirstRender.current = false
 			return
 		}
+
 		console.log('ПОШУК')
 		setLoading(true)
 		setError('')
 		setTimeout(() => {
 			postAPI
-				.getPost(query)
+				.getAllPosts(page, query)
 				.then(res => {
 					if (!res.data.total) {
 						// this.setState({ error: 'Empty array', items: [] })
@@ -112,7 +111,7 @@ export const Posts = () => {
 						{page !== 0 && <button onClick={prevPage}>Prev page</button>}
 						<div style={{ display: 'flex', gap: '5px' }}>
 							{pages.map(page => (
-								<span key={page} onClick={() => setPage(page)}>
+								<span key={page} onClick={() => setPage(page - 1)}>
 									{page}
 								</span>
 							))}
