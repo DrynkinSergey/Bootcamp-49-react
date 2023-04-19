@@ -21,9 +21,7 @@ const INITIAL_STATE = {
 
 export class LoginForm extends React.Component {
 	state = INITIAL_STATE
-	static propTypes = {
-		login: PropTypes.func.isRequired,
-	}
+
 	handleSubmit = e => {
 		e.preventDefault()
 

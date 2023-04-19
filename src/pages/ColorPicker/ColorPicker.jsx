@@ -23,8 +23,6 @@ export class ColorPicker extends Component {
 	}
 
 	shouldComponentUpdate(_, nextState) {
-		// console.log(_)
-		// console.log(nextState)
 		return nextState.currentColor !== this.state.currentColor
 	}
 
@@ -50,17 +48,3 @@ export class ColorPicker extends Component {
 		)
 	}
 }
-
-// export const ColorPicker = ({ colors }) => {
-// 	return (
-// 		<StyledBackgroundTheme>
-// 			<StyledColorPalette>
-// 				<StyledColorsList>
-// 					{colors.map((item, index) => (
-// 						<StyledColor key={item.id}>{item.color}</StyledColor>
-// 					))}
-// 				</StyledColorsList>
-// 			</StyledColorPalette>
-// 		</StyledBackgroundTheme>
-// 	)
-// }
