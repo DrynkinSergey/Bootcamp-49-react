@@ -1,66 +1,101 @@
 import axios from 'axios'
-import { Component } from 'react'
+import { Component, useEffect, useState } from 'react'
 import Modal from '../components/Modal'
 import styled from 'styled-components'
 
-export class ImageFinder extends Component {
-	state = {
-		images: [],
-		largeImg: null,
-		showModal: false,
-	}
-	onClose = () => {
-		this.setState(prevState => ({
-			showModal: !prevState.showModal,
-			largeImg: null,
-		}))
-	}
-	componentDidMount() {
+export const ImageFinder = () => {
+	const [images, setImages] = useState([])
+	const [largeImg, setLargeImg] = useState(null)
+	const [showModal, setShowModal] = useState(false)
+
+	useEffect(() => {
 		axios
 			.get(
 				'https://pixabay.com/api/?key=34245251-6411f4167ae6b395d699c44eb&q=yellow+flowers&image_type=photo'
 			)
-			.then(res =>
-				this.setState(prevState => ({
-					images: [...prevState.images, ...res.data.hits],
-				}))
-			)
-		setTimeout(() => {
-			axios
-				.get(
-					'https://pixabay.com/api/?key=34245251-6411f4167ae6b395d699c44eb&q=yellow+flowers&image_type=photo'
-				)
-				.then(res =>
-					this.setState(prevState => ({
-						images: [...prevState.images, ...res.data.hits],
-					}))
-				)
-		}, 3000)
+			.then(res => setImages(prevState => [...prevState, ...res.data.hits]))
+	}, [])
+
+	const onClose = () => {
+		setLargeImg(null)
+		setShowModal(prev => !prev)
 	}
-	componentDidUpdate(p, prevState) {}
-	render() {
-		const { images, largeImg } = this.state
-		return (
-			<>
-				<ImageContainer>
-					{images.map(image => (
-						<Card
-							key={image.id}
-							onClick={() => this.setState({ largeImg: image.largeImageURL })}
-						>
-							<img src={image.webformatURL} alt='img' />
-						</Card>
-					))}
-				</ImageContainer>
-				{largeImg && (
-					<Modal onClose={this.onClose}>
-						<img width='100%' src={largeImg} alt='img' />
-					</Modal>
-				)}
-			</>
-		)
-	}
+
+	return (
+		<>
+			<ImageContainer>
+				{images.map(image => (
+					<Card key={image.id} onClick={() => setLargeImg(image.largeImageURL)}>
+						<img src={image.webformatURL} alt='img' />
+					</Card>
+				))}
+			</ImageContainer>
+			{largeImg && (
+				<Modal onClose={onClose}>
+					<img width='100%' src={largeImg} alt='img' />
+				</Modal>
+			)}
+		</>
+	)
 }
+// export class ImageFinder extends Component {
+// 	state = {
+// 		images: [],
+// 		largeImg: null,
+// 		showModal: false,
+// 	}
+// 	onClose = () => {
+// 		this.setState(prevState => ({
+// 			showModal: !prevState.showModal,
+// 			largeImg: null,
+// 		}))
+// 	}
+// 	componentDidMount() {
+// 		axios
+// 			.get(
+// 				'https://pixabay.com/api/?key=34245251-6411f4167ae6b395d699c44eb&q=yellow+flowers&image_type=photo'
+// 			)
+// 			.then(res =>
+// 				this.setState(prevState => ({
+// 					images: [...prevState.images, ...res.data.hits],
+// 				}))
+// 			)
+// 		setTimeout(() => {
+// 			axios
+// 				.get(
+// 					'https://pixabay.com/api/?key=34245251-6411f4167ae6b395d699c44eb&q=yellow+flowers&image_type=photo'
+// 				)
+// 				.then(res =>
+// 					this.setState(prevState => ({
+// 						images: [...prevState.images, ...res.data.hits],
+// 					}))
+// 				)
+// 		}, 3000)
+// 	}
+// 	componentDidUpdate(p, prevState) {}
+// 	render() {
+// 		const { images, largeImg } = this.state
+// 		return (
+// 			<>
+// 				<ImageContainer>
+// 					{images.map(image => (
+// 						<Card
+// 							key={image.id}
+// 							onClick={() => this.setState({ largeImg: image.largeImageURL })}
+// 						>
+// 							<img src={image.webformatURL} alt='img' />
+// 						</Card>
+// 					))}
+// 				</ImageContainer>
+// 				{largeImg && (
+// 					<Modal onClose={this.onClose}>
+// 						<img width='100%' src={largeImg} alt='img' />
+// 					</Modal>
+// 				)}
+// 			</>
+// 		)
+// 	}
+// }
 const ImageContainer = styled.ul`
 	display: grid;
 	justify-content: center;
