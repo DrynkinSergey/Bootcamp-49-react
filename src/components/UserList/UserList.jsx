@@ -1,9 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from './UserList.module.scss'
 import { User } from '../User/User'
 import styled from 'styled-components'
-
+import usersData from './../../assets/users.json'
 export const StyledUserList = styled.ul`
 	display: flex;
 	flex-wrap: wrap;
@@ -11,7 +10,7 @@ export const StyledUserList = styled.ul`
 	padding: 100px 40px;
 `
 
-export const UserList = ({ usersData }) => {
+export const UserList = () => {
 	return (
 		<StyledUserList>
 			{usersData.map(user => (

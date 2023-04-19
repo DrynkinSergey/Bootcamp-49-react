@@ -7,6 +7,7 @@ const pages = [
 	{ title: 'Login', url: '/login' },
 	{ title: 'ImageFinder', url: '/imageFinder' },
 	{ title: 'Posts', url: '/posts' },
+	{ title: 'Users', url: '/users' },
 ]
 
 export const NavBar = () => {

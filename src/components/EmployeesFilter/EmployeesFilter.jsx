@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { StyledInput } from '../LoginForm/LoginForm.styled'
+import { StyledInput } from '../../pages/LoginForm/LoginForm.styled'
 const skilsList = [
 	{ value: 'all', label: 'all' },
 	{ value: 'react', label: 'react' },

@@ -7,6 +7,7 @@ import { ColorPicker } from './pages/ColorPicker/ColorPicker'
 import { Posts } from './pages/Posts'
 import { LoginForm } from './pages/LoginForm'
 import { NavBar } from './components/NavBar'
+import { Employees } from './components/Employees/Employees'
 
 export const App = () => {
 	return (
@@ -17,6 +18,7 @@ export const App = () => {
 				<Route path='/imageFinder' element={<ImageFinder />} />
 				<Route path='/counter' element={<Counter />} />
 				<Route path='/posts' element={<Posts />} />
+				<Route path='/users' element={<Employees />} />
 				<Route
 					path='/colorPicker'
 					element={<ColorPicker title='Color PICKER' />}
