@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react'
+import React, { Component, useEffect, useRef } from 'react'
 import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 
@@ -33,20 +33,27 @@ const CloseButton = styled.button`
 const modalDiv = document.querySelector('#modal')
 
 const Modal = ({ onClose, children }) => {
+	const intervalId = useRef(null)
+	useEffect(() => {
+		document.addEventListener('keydown', handleKeydown)
+
+		intervalId.current = setInterval(() => {
+			console.log(new Date().toLocaleTimeString())
+		}, 1000)
+		return () => {
+			clearInterval(intervalId.current)
+			document.removeEventListener('keydown', handleKeydown)
+		}
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
+
 	const handleKeydown = e => {
 		if (e.key === 'Escape') {
 			console.log('Escape')
 			onClose()
 		}
 	}
-	useEffect(() => {
-		document.addEventListener('keydown', handleKeydown)
-		return () => {
-			document.removeEventListener('keydown', handleKeydown)
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
-
 	const onBackdropClick = e => {
 		if (e.target === e.currentTarget) {
 			onClose()
