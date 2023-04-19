@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { StyledButton, StyledCounter } from './Counter.styled'
 import { Flex } from '../../styledComponents/Flex'
-import PropTypes from 'prop-types'
 
 export const Counter = () => {
 	// const [counter, setCounter] = useState(0)
@@ -31,11 +30,19 @@ export const Counter = () => {
 		if (state.counter === -5) {
 			return
 		}
+
+		/////////////////////  before  ///////////////////////
+		//
+		//
 		// this.setState(prevState => ({
 		// 	counter: prevState.counter - this.state.step,
 		// }))
-
+		//
 		// setState(prevState => prevState - state.step)
+		//
+		//
+		/////////////////////  after  ///////////////////////
+
 		setState(prevState => ({
 			...prevState, //{	counter: 1,		step: 1,		disableBtn: false,}
 			counter: prevState.counter - state.step,
