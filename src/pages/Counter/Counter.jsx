@@ -4,37 +4,56 @@ import { Flex } from '../../styledComponents/Flex'
 import PropTypes from 'prop-types'
 
 export const Counter = () => {
-	const [counter, setCounter] = useState(0)
-	const [step, setStep] = useState(1)
-	const [disableBtn, setDisableBtn] = useState(false)
-	console.log(counter)
+	// const [counter, setCounter] = useState(0)
+	// const [step, setStep] = useState(1)
+	// const [disableBtn] = useState(false)
+
+	const [state, setState] = useState({
+		counter: 1,
+		step: 1,
+		disableBtn: false,
+	})
 	const increment = () => {
 		// if (this.state.counter !== 10) {
 		// 	this.setState(prevState => ({
 		// 		counter: prevState.counter + this.state.step,
 		// 	}))
 		// }
-		if (counter !== 10) {
-			setCounter(prevState => prevState + step)
+		if (state.counter !== 10) {
+			// this.setState(prevState => ({counter:prevState.counter + 1}))
+			setState(prevState => ({
+				...prevState,
+				counter: prevState.counter + state.step,
+			}))
 		}
 	}
 	const decrement = () => {
-		if (counter === -5) {
+		if (state.counter === -5) {
 			return
 		}
 		// this.setState(prevState => ({
 		// 	counter: prevState.counter - this.state.step,
 		// }))
-		setCounter(prevState => prevState - step)
+
+		// setState(prevState => prevState - state.step)
+		setState(prevState => ({
+			...prevState, //{	counter: 1,		step: 1,		disableBtn: false,}
+			counter: prevState.counter - state.step,
+		}))
 	}
 
 	const reset = () => {
-		setCounter(0)
+		setState(prevState => ({
+			...prevState,
+			counter: 0,
+		}))
 	}
+	const { counter, disableBtn } = state
 	return (
 		<Flex center100vh>
 			<StyledCounter>
 				<h1>{counter}</h1>
+				<button onClick={() => setState(5)}>step = 5</button>
 				{counter > 5 && <h3>Congratulation!!</h3>}
 				<Flex gap='20px' justify='center'>
 					<StyledButton disabled={counter === -5} onClick={decrement}>
