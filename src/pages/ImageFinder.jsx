@@ -1,12 +1,14 @@
 import axios from 'axios'
-import { Component, useEffect, useState } from 'react'
+import { Component, useEffect, useRef, useState } from 'react'
 import Modal from '../components/Modal'
 import styled from 'styled-components'
+import { useToggle } from '../hooks/useToggle'
 
 export const ImageFinder = () => {
 	const [images, setImages] = useState([])
 	const [largeImg, setLargeImg] = useState(null)
-	const [showModal, setShowModal] = useState(false)
+	
+	const { toggle, isOpen, close } = useToggle()
 
 	useEffect(() => {
 		axios
@@ -18,9 +20,8 @@ export const ImageFinder = () => {
 
 	const onClose = () => {
 		setLargeImg(null)
-		setShowModal(prev => !prev)
+		toggle()
 	}
-
 	return (
 		<>
 			<ImageContainer>

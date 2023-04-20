@@ -5,6 +5,8 @@ import { PostCard } from './PostCard'
 import { Header } from '../../components/Countries/Header'
 import { toast } from 'react-toastify'
 import postAPI from '../../services/postsAPI'
+import Modal from '../../components/Modal'
+import { useToggle } from '../../hooks/useToggle'
 
 export const Posts = () => {
 	const [items, setItems] = useState([])
@@ -15,7 +17,16 @@ export const Posts = () => {
 	const [totalPages, setTotalPages] = useState(null)
 	const isFirstRender = useRef(true)
 	const myRef = useRef(null)
+	
+	const { open, isOpen, close } = useToggle()
+	// const [isOpen, setIsOpen] = useState(false)
 
+	// const toggle = () => {
+	// 	setIsOpen(prevState => !prevState)
+	// }
+	// const close = () => {
+	// 	setIsOpen(false)
+	// }
 	useEffect(() => {
 		setLoading(true)
 		setTimeout(() => {
@@ -92,6 +103,12 @@ export const Posts = () => {
 	return (
 		<div>
 			<Header title='Posts' onChangeInput={handleChangeQuery} />
+			<button onClick={open}>open/close</button>
+			{isOpen && (
+				<Modal onClose={close}>
+					<h1>Hello im modal form</h1>
+				</Modal>
+			)}
 			{loading && (
 				<Comment
 					visible={true}

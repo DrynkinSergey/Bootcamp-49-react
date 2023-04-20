@@ -6,7 +6,7 @@ import usersJson from './../../assets/employee.json'
 const USERS_KEY = 'users_key'
 
 export const Employees = () => {
-	const [users, setUsers] = useState(usersJson)
+	const [users, setUsers] = useState([])
 	const [filterStr, setFilterStr] = useState('')
 	const [activeSkill, setActiveSkill] = useState('all')
 	const [isOpenToWork, setIsOpenToWork] = useState(false)

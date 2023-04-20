@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 
@@ -29,18 +29,29 @@ const CloseButton = styled.button`
 	font-size: 20px;
 	cursor: pointer;
 `
-
 const modalDiv = document.querySelector('#modal')
 
-const Modal = ({ onClose, children }) => {
+const Modal = ({ onClose, children, title }) => {
 	const intervalId = useRef(null)
+	// console.log(intervalId.current)
+
+	const timeoutID = useRef(null)
+	const [state, setState] = useState('')
 	useEffect(() => {
 		document.addEventListener('keydown', handleKeydown)
-
 		intervalId.current = setInterval(() => {
-			console.log(new Date().toLocaleTimeString())
+			setState(new Date().toLocaleTimeString())
 		}, 1000)
+		timeoutID.current = setTimeout(() => {
+			console.log('Timeout')
+		}, 3000)
+
+		//Очищує наші еффекти, лісенери, таймаути, інтервали
+		// willUnmount аналог
 		return () => {
+			console.log('unmount')
+			clearTimeout(timeoutID.current)
+			// clearInterval(intervalId.current)
 			clearInterval(intervalId.current)
 			document.removeEventListener('keydown', handleKeydown)
 		}
@@ -54,33 +65,17 @@ const Modal = ({ onClose, children }) => {
 			onClose()
 		}
 	}
+
 	const onBackdropClick = e => {
 		if (e.target === e.currentTarget) {
 			onClose()
 		}
 	}
 
-	// componentDidMount() {
-	// 	document.addEventListener('keydown', this.handleKeydown)
-
-	// 	this.intervalId = setInterval(() => {
-	// 		this.setState({ time: new Date().toLocaleTimeString() })
-	// 	}, 1000)
-
-	// 	this.timeoutId = setTimeout(() => {
-	// 		console.log('hello from modal')
-	// 	}, 4000)
-	// }
-
-	// componentWillUnmount() {
-	// 	console.log('componentWillUnmount')
-	// 	clearInterval(this.intervalId)
-	// 	clearTimeout(this.timeoutId)
-	// 	document.removeEventListener('keydown', this.handleKeydown)
-	// }
 	return ReactDOM.createPortal(
 		<ModalWrapper onClick={onBackdropClick}>
 			<ModalContent>
+				{title && <h1>{title}</h1>}
 				<CloseButton onClick={onClose}>×</CloseButton>
 				{children}
 			</ModalContent>
@@ -88,23 +83,16 @@ const Modal = ({ onClose, children }) => {
 		modalDiv
 	)
 }
+
 // class Modal extends Component {
 // 	handleKeydown = e => {
 // 		if (e.key === 'Escape') {
 // 			console.log('Escape')
 // 			this.props.onClose()
 // 		}
-// 		if (e.key === 'm') {
-// 			console.log('m')
-// 			this.props.onClose()
-// 		}
 // 	}
 
 // 	onBackdropClick = e => {
-// 		// console.log('Закрити модалку по кліку на бекдроп')
-
-// 		// console.log('event target=>>>>>>>>', e.target)
-// 		// console.log('event Current Target=>>>>>>>>', e.currentTarget)
 // 		if (e.target === e.currentTarget) {
 // 			this.props.onClose()
 // 		}
