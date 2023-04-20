@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { StyledButton, StyledCounter } from './Counter.styled'
 import { Flex } from '../../styledComponents/Flex'
+import { UsersContext } from '../..'
 
 export const Counter = () => {
 	// const [counter, setCounter] = useState(0)
@@ -12,6 +13,7 @@ export const Counter = () => {
 		step: 1,
 		disableBtn: false,
 	})
+
 	const increment = () => {
 		// if (this.state.counter !== 10) {
 		// 	this.setState(prevState => ({

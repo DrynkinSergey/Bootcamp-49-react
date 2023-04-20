@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { EmployeesFilter } from '../EmployeesFilter/EmployeesFilter'
 import { EmployeeList } from '../EmployeeList/EmployeeList'
-import usersJson from './../../assets/employee.json'
+import { UsersContext } from '../../Context'
 
 const USERS_KEY = 'users_key'
 
 export const Employees = () => {
-	const [users, setUsers] = useState([])
+	const [users2, setUsers] = useState([])
 	const [filterStr, setFilterStr] = useState('')
 	const [activeSkill, setActiveSkill] = useState('all')
 	const [isOpenToWork, setIsOpenToWork] = useState(false)
-
+	const { users } = useContext(UsersContext)
 	useEffect(() => {
 		const usersFromLS = localStorage.getItem(USERS_KEY)
 		JSON.parse(usersFromLS)?.length
 			? setUsers(JSON.parse(usersFromLS))
-			: setUsers(usersJson)
+			: setUsers(users)
 	}, [])
 
 	useEffect(() => {

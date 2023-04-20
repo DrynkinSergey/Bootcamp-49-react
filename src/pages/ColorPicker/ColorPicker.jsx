@@ -1,16 +1,15 @@
-import React, { Component, useEffect, useState } from 'react'
+import React, { Component, useContext, useEffect, useState } from 'react'
 import {
 	StyledBackgroundTheme,
 	StyledColorPalette,
 	StyledColor,
 	StyledColorsList,
 } from './ColorPicker.styled'
-import colorsJson from '../../assets/colors.json'
+import { UsersContext } from '../../Context'
 
 export const ColorPicker = ({ title }) => {
-	const [colors] = useState(colorsJson)
 	const [currentColor, setCurrentColor] = useState('white')
-
+	const { colors } = useContext(UsersContext)
 	// useEffect(() => {
 	// 	console.log('First render')
 	// }, [])

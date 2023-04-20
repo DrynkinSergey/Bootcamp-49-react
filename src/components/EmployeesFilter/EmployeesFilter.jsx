@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { StyledInput } from '../../pages/LoginForm/LoginForm.styled'
+import { UsersContext } from '../../Context'
 const skilsList = [
 	{ value: 'all', label: 'all' },
 	{ value: 'react', label: 'react' },
@@ -27,8 +28,12 @@ export const EmployeesFilter = ({
 	filterStr,
 	isOpen,
 }) => {
+	const { user } = useContext(UsersContext)
 	return (
 		<Filters>
+			<h1>{user.name}</h1>
+			<hr />
+			<h1>{user.email}</h1>
 			<Flex column>
 				<StyledInput
 					type='text'

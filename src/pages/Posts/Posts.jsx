@@ -17,7 +17,7 @@ export const Posts = () => {
 	const [totalPages, setTotalPages] = useState(null)
 	const isFirstRender = useRef(true)
 	const myRef = useRef(null)
-	
+
 	const { open, isOpen, close } = useToggle()
 	// const [isOpen, setIsOpen] = useState(false)
 

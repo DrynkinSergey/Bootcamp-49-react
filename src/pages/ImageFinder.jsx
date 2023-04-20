@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Component, useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Modal from '../components/Modal'
 import styled from 'styled-components'
 import { useToggle } from '../hooks/useToggle'
@@ -7,8 +7,8 @@ import { useToggle } from '../hooks/useToggle'
 export const ImageFinder = () => {
 	const [images, setImages] = useState([])
 	const [largeImg, setLargeImg] = useState(null)
-	
-	const { toggle, isOpen, close } = useToggle()
+
+	const { toggle } = useToggle()
 
 	useEffect(() => {
 		axios

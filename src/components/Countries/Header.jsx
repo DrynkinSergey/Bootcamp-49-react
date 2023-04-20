@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { toast } from 'react-toastify'
 import styled from 'styled-components'
+import { UsersContext } from '../../Context'
 
 export const Header = ({ title = 'header', onChangeInput }) => {
 	const onSubmit = e => {
@@ -13,9 +14,14 @@ export const Header = ({ title = 'header', onChangeInput }) => {
 		onChangeInput(form.input.value)
 		form.reset()
 	}
+	const { user } = useContext(UsersContext)
+	user.greetings(user.name)
 	return (
 		<HeaderWrapper>
 			<h1>{title}</h1>
+			<h2>Hello, {user.name}</h2>
+			<h2>Email:, {user.email}</h2>
+
 			<form onSubmit={onSubmit}>
 				<input name='input' type='text' />
 				<button>Search</button>

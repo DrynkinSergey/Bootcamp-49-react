@@ -8,27 +8,29 @@ import { Posts } from './pages/Posts'
 import { LoginForm } from './pages/LoginForm'
 import { NavBar } from './components/NavBar'
 import { Employees } from './components/Employees/Employees'
-
+import { UsersContext, myData } from './Context'
 export const App = () => {
 	// useEffect(() => {
 
 	// }, [])
 	return (
 		<>
-			<NavBar />
-			<Routes>
-				<Route index element={<Layout />} />
-				<Route path='/imageFinder' element={<ImageFinder />} />
-				<Route path='/counter' element={<Counter />} />
-				<Route path='/posts' element={<Posts />} />
-				<Route path='/users' element={<Employees />} />
-				<Route
-					path='/colorPicker'
-					element={<ColorPicker title='Color PICKER' />}
-				/>
-				<Route path='/login' element={<LoginForm />} />
-				<Route path='*' element={<h1>Not found</h1>} />
-			</Routes>
+			<UsersContext.Provider value={myData}>
+				<NavBar />
+				<Routes>
+					<Route index element={<Layout />} />
+					<Route path='/imageFinder' element={<ImageFinder />} />
+					<Route path='/counter' element={<Counter />} />
+					<Route path='/posts' element={<Posts />} />
+					<Route path='/users' element={<Employees />} />
+					<Route
+						path='/colorPicker'
+						element={<ColorPicker title='Color PICKER' />}
+					/>
+					<Route path='/login' element={<LoginForm />} />
+					<Route path='*' element={<h1>Not found</h1>} />
+				</Routes>
+			</UsersContext.Provider>
 		</>
 	)
 }
