@@ -1,39 +1,86 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useEffect, useReducer, useState } from 'react'
 import Modal from '../components/Modal'
 import styled from 'styled-components'
 import { useToggle } from '../hooks/useToggle'
 
 export const ImageFinder = () => {
-	const [images, setImages] = useState([])
-	const [largeImg, setLargeImg] = useState(null)
+	// const [images, setImages] = useState([])
+	// const [largeImg, setLargeImg] = useState(null)
+
+	const initialState = {
+		images: [],
+		largeImg: null,
+		loading: false,
+	}
+	const imageReducer = (state, action) => {
+		console.log(action)
+		switch (action.type) {
+			case 'getImages':
+				return {
+					...state,
+					images: [...state.images, ...action.payload],
+				}
+			case 'setLoading':
+				return {
+					...state,
+					loading: true,
+				}
+			case 'setLoadingFalse':
+				return {
+					...state,
+					loading: false,
+				}
+			case 'setImage':
+				return {
+					...state,
+					largeImg: action.payload,
+				}
+
+			default:
+				console.log('Такого єкшену не має ще')
+				return state
+		}
+	}
+
+	const [state, dispatch] = useReducer(imageReducer, initialState)
 
 	const { toggle } = useToggle()
 
 	useEffect(() => {
+		dispatch({ type: 'setLoading' })
 		axios
 			.get(
 				'https://pixabay.com/api/?key=34245251-6411f4167ae6b395d699c44eb&q=yellow+flowers&image_type=photo'
 			)
-			.then(res => setImages(prevState => [...prevState, ...res.data.hits]))
+			// .then(res => setImages(prevState => [...prevState, ...res.data.hits]))
+			.then(res => {
+				dispatch({ type: 'getImages', payload: res.data.hits })
+				dispatch({ type: 'setLoadingFalse' })
+			})
 	}, [])
 
 	const onClose = () => {
-		setLargeImg(null)
-		toggle()
+		// setLargeImg(null)
+		dispatch({ type: 'setImage', payload: null })
 	}
 	return (
 		<>
 			<ImageContainer>
-				{images.map(image => (
-					<Card key={image.id} onClick={() => setLargeImg(image.largeImageURL)}>
+				{state.images.map(image => (
+					<Card
+						key={image.id}
+						onClick={() =>
+							dispatch({ type: 'setImage', payload: image.largeImageURL })
+						}
+					>
 						<img src={image.webformatURL} alt='img' />
 					</Card>
 				))}
 			</ImageContainer>
-			{largeImg && (
+			{state.largeImg && (
 				<Modal onClose={onClose}>
-					<img width='100%' src={largeImg} alt='img' />
+					<img width='100%' src={state.largeImg} alt='img' />
 				</Modal>
 			)}
 		</>
