@@ -7,14 +7,18 @@ import { useToggle } from '../hooks/useToggle'
 export const ImageFinder = () => {
 	// const [images, setImages] = useState([])
 	// const [largeImg, setLargeImg] = useState(null)
-
+	useEffect(() => {
+		console.log('Компонент ImageFinder є на екрані')
+		return () => {
+			console.log('Компонент ImageFinder видалено')
+		}
+	}, [])
 	const initialState = {
 		images: [],
 		largeImg: null,
 		loading: false,
 	}
 	const imageReducer = (state, action) => {
-		console.log(action)
 		switch (action.type) {
 			case 'getImages':
 				return {

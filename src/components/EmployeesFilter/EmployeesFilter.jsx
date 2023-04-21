@@ -31,9 +31,6 @@ export const EmployeesFilter = ({
 	const { user } = useContext(UsersContext)
 	return (
 		<Filters>
-			<h1>{user.name}</h1>
-			<hr />
-			<h1>{user.email}</h1>
 			<Flex column>
 				<StyledInput
 					type='text'

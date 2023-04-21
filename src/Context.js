@@ -4,7 +4,7 @@ import colors from './assets/colors.json'
 export const UsersContext = createContext()
 
 export const myData = {
-	users: usersJson,
+	users2: usersJson,
 	colors: colors,
 	user: {
 		name: 'petya',

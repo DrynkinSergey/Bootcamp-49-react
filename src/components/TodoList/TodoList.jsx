@@ -91,22 +91,3 @@ export class TodoList extends React.Component {
 		)
 	}
 }
-// export const TodoList = ({ todos }) => {
-// 	return (
-// 		<div>
-// 			<StyledTodoList>
-// 				<Flex justify='space-between'>
-// 					<StyledInput type='text' />
-// 					<StyledButton>Add</StyledButton>
-// 				</Flex>
-// 				{todos.map(({ todo, id, completed }) => (
-// 					<StyledTodo key={id}>
-// 						<input type='checkbox' checked={completed} />
-// 						<span>{todo}</span>
-// 						<StyledButton size='18px'>Del</StyledButton>
-// 					</StyledTodo>
-// 				))}
-// 			</StyledTodoList>
-// 		</div>
-// 	)
-// }
