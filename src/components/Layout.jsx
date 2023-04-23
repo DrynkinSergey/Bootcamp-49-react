@@ -1,11 +1,18 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
+import styled from 'styled-components'
+import { NavBar } from './NavBar'
 
 export const Layout = () => {
 	return (
-		<div>
-			<h1>Welcome</h1>
-			<Outlet fallback={null} />
-		</div>
+		<LayoutWrapper>
+			<NavBar />
+			<Outlet />
+		</LayoutWrapper>
 	)
 }
+
+const LayoutWrapper = styled.main`
+	display: grid;
+	grid-template-columns: 250px 1fr;
+`

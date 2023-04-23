@@ -6,7 +6,6 @@ import { NavBar } from './components/NavBar'
 export const App = () => {
 	return (
 		<>
-			<NavBar />
 			<Routes>
 				<Route index element={<Layout />} />
 			</Routes>
