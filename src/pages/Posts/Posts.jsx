@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { Comment } from 'react-loader-spinner'
 import { PostCard } from './PostCard'
-import { Header } from '../../components/Countries/Header'
 import { toast } from 'react-toastify'
 import postAPI from '../../services/postsAPI'
 
@@ -100,7 +99,6 @@ export class Posts extends React.Component {
 		}
 		return (
 			<div>
-				<Header title='Posts' onChangeInput={this.handleChangeQuery} />
 				{loading && (
 					<Comment
 						visible={true}
