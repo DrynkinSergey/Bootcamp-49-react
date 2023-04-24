@@ -5,7 +5,6 @@ import './index.css'
 import { createGlobalStyle } from 'styled-components'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { BrowserRouter } from 'react-router-dom'
 const root = ReactDOM.createRoot(document.getElementById('root'))
 const Global = createGlobalStyle`
 body{
@@ -21,10 +20,8 @@ a{
 
 root.render(
 	<>
-		<BrowserRouter>
-			<App />
-			<Global />
-			<ToastContainer autoClose={2000} />
-		</BrowserRouter>
+		<App />
+		<Global />
+		<ToastContainer autoClose={2000} />
 	</>
 )
