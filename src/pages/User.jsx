@@ -5,7 +5,7 @@ import { Link, Outlet, useParams } from 'react-router-dom'
 const User = () => {
 	const { id } = useParams()
 	const [user, setUser] = useState({})
-	console.log(id)
+
 	useEffect(() => {
 		axios.get(`https://dummyjson.com/users/${id}`).then(res => {
 			setUser(res.data)
@@ -16,6 +16,7 @@ const User = () => {
 	const { firstName, lastName, age, image, phone, email } = user
 	return (
 		<div>
+		
 			<h1>You see user #{id}</h1>
 			<img src={image} alt='userImg' />
 			<h1>
@@ -27,7 +28,7 @@ const User = () => {
 			<Link to={`posts`}>Побачити пости</Link>
 			<br />
 			<Link to={`adress`}>Побачити адресу юзера</Link>
-			<Outlet fallback={<h1>Loading...</h1>} />
+			{/* <Outlet fallback={<h1>Loading...</h1>} /> */}
 		</div>
 	)
 }

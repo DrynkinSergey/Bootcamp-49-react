@@ -10,7 +10,7 @@ const Posts = () => {
 		axios.get(`https://dummyjson.com/users/${id}/posts`).then(res => {
 			setPosts(res.data.posts)
 		})
-	}, [])
+	}, [id])
 	return (
 		<div>
 			Posts
