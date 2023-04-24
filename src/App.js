@@ -24,9 +24,9 @@ export const App = () => {
 							index
 							element={<h1> Натисни на кнопку подивитись пости</h1>}
 						/>
+						<Route path='posts' element={<Posts />} />
+						<Route path='adress' element={<Adress />} />
 					</Route>
-					<Route path='users/:id/posts' element={<Posts />} />
-					<Route path='users/:id/adress' element={<Adress />} />
 
 					<Route path='imageFinder' element={<ImageFinder />} />
 					<Route path='login' element={<Login />} />
