@@ -4,10 +4,7 @@ import styled from 'styled-components'
 export const NavBar = () => {
 	return (
 		<SideBar>
-			<NavItem to='/'>Home</NavItem>
-			<NavItem>Home</NavItem>
-			<NavItem>Home</NavItem>
-			<NavItem>Home</NavItem>
+			<span>Home</span>
 		</SideBar>
 	)
 }
