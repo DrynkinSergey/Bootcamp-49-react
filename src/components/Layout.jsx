@@ -7,11 +7,17 @@ export const Layout = () => {
 	return (
 		<LayoutWrapper>
 			<NavBar />
+			<WrapperOutlet>
+				<Outlet />
+			</WrapperOutlet>
 		</LayoutWrapper>
 	)
 }
 
 const LayoutWrapper = styled.main`
 	display: grid;
-	grid-template-columns: 250px 1fr;
+	grid-template-columns: 200px 1fr;
+`
+const WrapperOutlet = styled.div`
+	padding: 20px;
 `
