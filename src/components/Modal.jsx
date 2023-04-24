@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 
@@ -34,6 +34,15 @@ const modalDiv = document.querySelector('#modal')
 const Modal = ({ onClose, children, title }) => {
 	const intervalId = useRef(null)
 	// console.log(intervalId.current)
+	const handleKeydown = useCallback(
+		e => {
+			if (e.key === 'Escape') {
+				console.log('Escape')
+				onClose()
+			}
+		},
+		[onClose]
+	)
 
 	const timeoutID = useRef(null)
 	const [state, setState] = useState('')
@@ -55,16 +64,7 @@ const Modal = ({ onClose, children, title }) => {
 			clearInterval(intervalId.current)
 			document.removeEventListener('keydown', handleKeydown)
 		}
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
-
-	const handleKeydown = e => {
-		if (e.key === 'Escape') {
-			console.log('Escape')
-			onClose()
-		}
-	}
+	}, [handleKeydown])
 
 	const onBackdropClick = e => {
 		if (e.target === e.currentTarget) {
