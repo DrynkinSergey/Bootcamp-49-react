@@ -1,17 +1,42 @@
 import React, { Suspense, lazy } from 'react'
-import { Layout } from './components/Layout'
-import { Route, Routes, Navigate } from 'react-router-dom'
+import { Route, Routes, Navigate, useNavigate, Outlet } from 'react-router-dom'
 import NotFound from './pages/NotFound'
 import Home from './pages/Home'
 import User from './pages/User'
-import { Adress } from './pages/Adress'
+import Adress from './pages/Adress'
 import Login from './pages/Login'
+import { NavBar } from './components/NavBar'
 import PrivateRoute from './hoc/PrivateRoute'
 import PublicRoute from './hoc/PublicRoute'
+import styled from 'styled-components'
 
 const Users = lazy(() => import('./pages/Users'))
 const ImageFinder = lazy(() => import('./pages/ImageFinder'))
 const Posts = lazy(() => import('./pages/Posts'))
+
+const Layout = () => {
+	const navigate = useNavigate()
+	return (
+		<LayoutWrapper>
+			<NavBar />
+			<WrapperOutlet>
+				<button onClick={() => navigate(-1)}>Back</button>
+				<button onClick={() => navigate(1)}>Next</button>
+				<Suspense fallback={<h1>Loading.....</h1>}>
+					<Outlet />
+				</Suspense>
+			</WrapperOutlet>
+		</LayoutWrapper>
+	)
+}
+
+const LayoutWrapper = styled.main`
+	display: grid;
+	grid-template-columns: 200px 1fr;
+`
+const WrapperOutlet = styled.div`
+	padding: 20px;
+`
 
 export const App = () => {
 	return (

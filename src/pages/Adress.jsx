@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-export const Adress = () => {
+const Adress = () => {
 	const { id } = useParams()
 	const [address, setAdress] = useState('')
 
@@ -21,3 +21,4 @@ export const Adress = () => {
 		</div>
 	)
 }
+export default Adress

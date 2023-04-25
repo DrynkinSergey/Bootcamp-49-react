@@ -9,7 +9,6 @@ const User = () => {
 	useEffect(() => {
 		axios.get(`https://dummyjson.com/users/${id}`).then(res => {
 			setUser(res.data)
-			console.log(res.data)
 		})
 	}, [id])
 
