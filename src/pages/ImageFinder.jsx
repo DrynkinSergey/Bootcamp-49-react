@@ -3,7 +3,7 @@ import { Component } from 'react'
 import Modal from '../components/Modal'
 import styled from 'styled-components'
 
-export class ImageFinder extends Component {
+class ImageFinder extends Component {
 	state = {
 		images: [],
 		largeImg: null,
@@ -86,3 +86,4 @@ const Card = styled.li`
 		}
 	}
 `
+export default ImageFinder

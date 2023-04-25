@@ -1,17 +1,19 @@
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { useAuth } from '../hooks/useAuth'
 
 export const NavBar = () => {
 	const location = useLocation()
+	const navigate = useNavigate()
 	const navMap = [
 		{ path: '/', title: 'Home' },
 		{ path: '/about', title: 'About' },
 		{ path: '/imageFinder', title: 'ImageFinder' },
 		{ path: '/users', title: 'Users' },
-		{ path: '/login', title: 'Login' },
+		{ path: '/posts', title: 'Posts' },
 	]
-	const { user } = useAuth()
+	const { user, signOut } = useAuth()
+
 	return (
 		<SideBar>
 			{user && <h1>{user}</h1>}
@@ -20,6 +22,15 @@ export const NavBar = () => {
 					{title}
 				</NavItem>
 			))}
+			{!user ? (
+				<button
+					onClick={() => navigate('/login', { state: { from: location } })}
+				>
+					Login
+				</button>
+			) : (
+				<button onClick={() => signOut()}>Exit</button>
+			)}
 		</SideBar>
 	)
 }

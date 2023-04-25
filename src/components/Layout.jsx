@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { NavBar } from './NavBar'
@@ -11,8 +11,9 @@ export const Layout = () => {
 			<WrapperOutlet>
 				<button onClick={() => navigate(-1)}>Back</button>
 				<button onClick={() => navigate(1)}>Next</button>
-
-				<Outlet />
+				<Suspense fallback={<h1>Loading.....</h1>}>
+					<Outlet />
+				</Suspense>
 			</WrapperOutlet>
 		</LayoutWrapper>
 	)

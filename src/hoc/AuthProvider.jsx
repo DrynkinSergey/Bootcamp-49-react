@@ -14,7 +14,6 @@ export const AuthProvider = ({ children }) => {
 	}
 	const signOut = callback => {
 		setUser(null)
-		callback()
 	}
 
 	// 3. Створюємо єдиний об'єкт для передачі в Аuth.Provider
