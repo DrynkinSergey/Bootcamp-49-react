@@ -6,6 +6,7 @@ import { createGlobalStyle } from 'styled-components'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { BrowserRouter } from 'react-router-dom'
+import { AuthProvider } from './hoc/AuthProvider'
 const root = ReactDOM.createRoot(document.getElementById('root'))
 const Global = createGlobalStyle`
 body{
@@ -22,7 +23,10 @@ a{
 root.render(
 	<>
 		<BrowserRouter>
-			<App />
+			{/* // 4. Огортаємо <App/> у наш AuthProvider, для того щоб роздати контекст для всіх компонентів всередині */}
+			<AuthProvider>
+				<App />
+			</AuthProvider>
 			<Global />
 			<ToastContainer autoClose={2000} />
 		</BrowserRouter>

@@ -4,10 +4,8 @@ import { useParams } from 'react-router-dom'
 
 const Adress = () => {
 	const { id } = useParams()
-	const [address, setAdress] = useState({})
-	useEffect(() => {
-		console.log('mount')
-	}, [])
+	const [address, setAdress] = useState('')
+
 	useEffect(() => {
 		axios
 			.get(`https://dummyjson.com/users/${id}`)
@@ -15,15 +13,11 @@ const Adress = () => {
 	}, [id])
 	return (
 		<div>
-			<>
-				<h2>{address.lastName}</h2>
-				{address.address && (
-					<>
-						<h2>{address.address.city}</h2>
-						<h2>{address.address.address}</h2>
-					</>
-				)}
-			</>
+			<div>
+				<h2>{address?.lastName}</h2>
+				<h2>{address.address?.city}</h2>
+				<h2>{address.address?.address}</h2>
+			</div>
 		</div>
 	)
 }

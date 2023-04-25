@@ -1,7 +1,9 @@
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import styled from 'styled-components'
+import { useAuth } from '../hooks/useAuth'
 
 export const NavBar = () => {
+	const location = useLocation()
 	const navMap = [
 		{ path: '/', title: 'Home' },
 		{ path: '/about', title: 'About' },
@@ -9,10 +11,12 @@ export const NavBar = () => {
 		{ path: '/users', title: 'Users' },
 		{ path: '/login', title: 'Login' },
 	]
+	const { user } = useAuth()
 	return (
 		<SideBar>
+			{user && <h1>{user}</h1>}
 			{navMap.map(({ path, title }) => (
-				<NavItem key={path} to={path}>
+				<NavItem key={path} to={path} state={{ from: location }}>
 					{title}
 				</NavItem>
 			))}
