@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { SingleTodo } from './singleTodo'
-import axios from 'axios'
 import { Filter } from './Filter'
+import { useSelector } from 'react-redux'
 
 export const TodoList = () => {
-	const ViewData = () => [].map(todo => <SingleTodo key={todo.id} {...todo} />)
+	const { todos } = useSelector(state => state.todoList)
+	const ViewData = () =>
+		todos.map(todo => <SingleTodo key={todo.id} {...todo} />)
 
 	return (
 		<div className='font-josefin bg-darkMain shadow-mainDark'>

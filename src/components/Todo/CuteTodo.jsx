@@ -3,6 +3,7 @@ import bg from './../../assets/images/bg-desktop-dark.jpg'
 import bgMobile from './../../assets/images/bg-mobile-dark.jpg'
 import { AddForm } from './AddForm'
 import { TodoList } from './todoList'
+
 export const CuteTodo = () => {
 	const bgImage = useMemo(
 		() => (

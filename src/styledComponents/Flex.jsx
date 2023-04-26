@@ -10,6 +10,7 @@ const StyledFlex = styled.div`
 			align-items: center;
 			min-height: 100vh;
 		`};
+	display: flex;
 	flex-direction: ${props => props.direction || 'row'};
 	gap: ${props => props.gap || '0'};
 `

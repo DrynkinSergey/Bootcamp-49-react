@@ -1,7 +1,18 @@
+import { useDispatch } from 'react-redux'
+import { addTodoAC } from '../../redux/Todo/actions'
+
 export const AddForm = ({ onSubmit }) => {
+	const dispatch = useDispatch()
 	const handleSubmit = e => {
 		e.preventDefault()
 		if (e.target.addTodo.value.trim()) {
+			dispatch(
+				addTodoAC({
+					title: e.target.addTodo.value.trim(),
+					id: new Date().getTime(),
+					completed: false,
+				})
+			)
 			e.target.reset()
 			e.target.focus()
 		}
