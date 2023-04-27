@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux'
 import { addTodoAC } from '../../redux/Todo/actions'
+import { addTodo } from '../../redux/Todo/todoSlice'
 
 export const AddForm = ({ onSubmit }) => {
 	const dispatch = useDispatch()
@@ -7,7 +8,7 @@ export const AddForm = ({ onSubmit }) => {
 		e.preventDefault()
 		if (e.target.addTodo.value.trim()) {
 			dispatch(
-				addTodoAC({
+				addTodo({
 					title: e.target.addTodo.value.trim(),
 					id: new Date().getTime(),
 					completed: false,

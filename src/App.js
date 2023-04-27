@@ -5,6 +5,7 @@ import { Counter } from './components/Counter/Counter'
 export const App = () => {
 	return (
 		<>
+			<CuteTodo />
 			<Counter />
 		</>
 	)

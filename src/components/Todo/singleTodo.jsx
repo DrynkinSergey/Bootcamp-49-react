@@ -1,7 +1,7 @@
 import React from 'react'
 import icon from '../../assets/images/icon-check.svg'
 import { useDispatch } from 'react-redux'
-import { deleteTodoAC, toggleTodoAC } from '../../redux/Todo/actions'
+import { deleteTodo, toggleTodo } from '../../redux/Todo/todoSlice'
 export const SingleTodo = ({ id, title, completed }) => {
 	const dispatch = useDispatch()
 
@@ -12,7 +12,7 @@ export const SingleTodo = ({ id, title, completed }) => {
 		<li className='group  list-none cursor-pointer  py-4  border-b-white/10 border-b-[1px] text-white/80 grid   grid-cols-todo items-center'>
 			<label className='relative inline-block cursor-pointer'>
 				<input
-					onChange={() => dispatch(toggleTodoAC(id))}
+					onChange={() => dispatch(toggleTodo(id))}
 					type='checkbox'
 					className='absolute opacity-0 cursor-pointer h-0 w-0'
 					checked={completed}
@@ -34,7 +34,7 @@ export const SingleTodo = ({ id, title, completed }) => {
 			</span>
 			<button
 				className=' transition-all hidden text-white/20 hover:text-white  group-hover:block mx-auto'
-				onClick={() => dispatch(deleteTodoAC(id))}
+				onClick={() => dispatch(deleteTodo(id))}
 			>
 				X
 			</button>
