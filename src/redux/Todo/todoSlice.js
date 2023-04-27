@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-const initialState = { todos: [] }
+const initialState = { todos: [], filter: '' }
 //==============================================//
 
 // 1. Створення слайса
@@ -10,6 +10,7 @@ const initialState = { todos: [] }
 // 6. Експортую редьюсер до гори
 
 //==============================================//
+
 // 1 етап
 
 const todoSlice = createSlice({
@@ -35,12 +36,15 @@ const todoSlice = createSlice({
 			const item = state.todos.find(item => item.id === payload)
 			item.completed = !item.completed
 		},
+		setFilter: (state, { payload }) => {
+			state.filter = payload
+		},
 	},
 })
 
 // 5 етап
 
-export const { addTodo, deleteTodo, toggleTodo } = todoSlice.actions
+export const { addTodo, deleteTodo, toggleTodo, setFilter } = todoSlice.actions
 
 // 6 етап
 

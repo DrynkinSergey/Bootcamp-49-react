@@ -1,9 +1,10 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addTodoAC } from '../../redux/Todo/actions'
-import { addTodo } from '../../redux/Todo/todoSlice'
+import { addTodo, setFilter } from '../../redux/Todo/todoSlice'
 
 export const AddForm = ({ onSubmit }) => {
 	const dispatch = useDispatch()
+	const filter = useSelector(state => state.todoList.filter)
 	const handleSubmit = e => {
 		e.preventDefault()
 		if (e.target.addTodo.value.trim()) {
@@ -24,6 +25,8 @@ export const AddForm = ({ onSubmit }) => {
 			onSubmit={handleSubmit}
 		>
 			<input
+				value={filter}
+				onChange={e => dispatch(setFilter(e.target.value))}
 				autoComplete='off'
 				placeholder='Add some todo....'
 				className=' px-4  w-2/3 rounded-md mr-4 text-black'

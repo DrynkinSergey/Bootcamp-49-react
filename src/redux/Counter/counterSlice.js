@@ -24,3 +24,5 @@ const counterSlice = createSlice({
 
 export const { increment, decrement, reset, setStep } = counterSlice.actions
 export const counterReducer = counterSlice.reducer
+
+//createAsyncThunk
