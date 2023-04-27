@@ -18,7 +18,7 @@ export const StyledCounter = styled.div`
 	min-height: 40vh;
 	display: flex;
 	flex-direction: column;
-	gap: 40px;
+	gap: 10px;
 	align-items: center;
 	justify-content: center;
 	width: 40vw;

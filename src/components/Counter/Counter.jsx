@@ -2,12 +2,8 @@ import React, { useState } from 'react'
 import { StyledButton, StyledCounter } from './Counter.styled'
 import { Flex } from '../../styledComponents/Flex'
 import { useSelector, useDispatch } from 'react-redux'
-import {
-	minusAC,
-	plusAC,
-	resetAC,
-	setStepAC,
-} from './../../redux/Counter/actions'
+import { minusAC, plusAC, resetAC, setStepAC } from '../../redux/Counter/reducer'
+
 export const Counter = () => {
 	const { count, secretStep, step } = useSelector(state => state.counter) // отримує данні з редаксу
 	const dispatch = useDispatch() // вказує що змінити в редаксі (action)

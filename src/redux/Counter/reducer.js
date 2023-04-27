@@ -1,24 +1,29 @@
-import { MINUS, PLUS, RESET, SET_STEP } from './actions'
+import { createAction } from '@reduxjs/toolkit'
+
+export const plusAC = createAction('counter/increment')
+export const minusAC = createAction('counter/decrement')
+export const resetAC = createAction('counter/reset')
+export const setStepAC = createAction('counter/setStep')
 
 const init = { count: 0, step: 1, secretStep: 17 }
 export const countReducer = (state = init, action) => {
 	switch (action.type) {
-		case PLUS:
+		case plusAC.type:
 			return {
 				...state,
 				count: state.count + state.step,
 			}
-		case MINUS:
+		case minusAC.type:
 			return {
 				...state,
 				count: state.count - state.step,
 			}
-		case SET_STEP:
+		case setStepAC.type:
 			return {
 				...state,
 				step: action.payload,
 			}
-		case RESET:
+		case resetAC.toString():
 			return init
 		default:
 			return state

@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react'
 import { SingleTodo } from './singleTodo'
 import { Filter } from './Filter'
 import { useSelector } from 'react-redux'
