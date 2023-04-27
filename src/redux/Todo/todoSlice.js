@@ -1,26 +1,30 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit'
-import axios from 'axios'
-const initialState = { todoItems: [], filterStr: '' }
-export const fetchUsersThunk = () => dispatch => {
-	axios
-		.get('http://localhost:3002/todos')
-		.then(res => dispatch(addTodo(res.data)))
+import { addTodoThunk } from './thunks'
+const initialState = {
+	todoItems: [],
+	filterStr: '',
+	loading: false,
+	error: null,
 }
-export const fetchDeleteUserThunk = id => dispatch => {
-	axios
-		.delete(`http://localhost:3002/todos/${id}`)
-		.then(res => dispatch(deleteTodo(id)))
-}
+
 const todoSlice = createSlice({
 	name: '@@todos',
 
 	initialState,
 
 	reducers: {
-		addTodo: (state, action) => {
-			state.todoItems.push(...action.payload)
+		addTodoPending: (state, action) => {
+			state.loading = true
 		},
-
+		addTodoFulfilled: (state, action) => {
+			state.todoItems.push(action.payload)
+		},
+		addTodoError: (state, action) => {
+			state.error = action.payload
+		},
+		getTodos: (state, action) => {
+			state.todoItems = action.payload
+		},
 		deleteTodo: (state, { payload }) => {
 			const item = state.todoItems.findIndex(item => item.id === payload)
 			state.todoItems.splice(item, 1)
@@ -33,11 +37,32 @@ const todoSlice = createSlice({
 			state.filterStr = payload
 		},
 	},
+	extraReducers: {
+		[addTodoThunk.fulfilled]: (state, { payload }) => {
+			state.todoItems.push(payload)
+			state.loading = false
+		},
+		[addTodoThunk.rejected]: (state, { payload }) => {
+			state.error = payload
+		},
+		[addTodoThunk.pending]: (state, { payload }) => {
+			state.loading = true
+			state.error = null
+		},
+	},
 })
 
 // 5 етап
 
-export const { addTodo, deleteTodo, toggleTodo, setFilter } = todoSlice.actions
+export const {
+	deleteTodo,
+	toggleTodo,
+	setFilter,
+	addTodoPending,
+	addTodoError,
+	addTodoFulfilled,
+	getTodos,
+} = todoSlice.actions
 
 // 6 етап
 
