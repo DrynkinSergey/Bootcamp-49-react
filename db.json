@@ -1,0 +1,24 @@
+{
+	"todos": [
+		{
+			"title": "js",
+			"completed": false,
+			"id": 3
+		},
+		{
+			"title": "redux",
+			"completed": false,
+			"id": 3
+		},
+		{
+			"title": "react",
+			"completed": false,
+			"id": 3
+		},
+		{
+			"title": "thunk",
+			"completed": false,
+			"id": 3
+		}
+	]
+}
