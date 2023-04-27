@@ -14,6 +14,7 @@ export const TodoList = () => {
 		<div className='font-josefin bg-darkMain shadow-mainDark'>
 			<ul className='rounded-md overflow-hidden'>
 				<ViewData />
+				<Filter />
 			</ul>
 		</div>
 	)

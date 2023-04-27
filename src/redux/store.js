@@ -1,6 +1,7 @@
 import { counterReducer } from './Counter/counterSlice'
 import { configureStore } from '@reduxjs/toolkit'
 import { todoReducer } from './Todo/todoSlice'
+// redux-persist
 import {
 	persistStore,
 	persistReducer,
@@ -12,6 +13,7 @@ import {
 	REGISTER,
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import { userReducer } from './userSlice'
 
 const persistConfig = {
 	key: 'root',
@@ -24,6 +26,7 @@ const persistedReducer = persistReducer(persistConfig, todoReducer)
 
 export const store = configureStore({
 	reducer: {
+		users: userReducer,
 		counter: counterReducer,
 		todoList: persistedReducer,
 	},
