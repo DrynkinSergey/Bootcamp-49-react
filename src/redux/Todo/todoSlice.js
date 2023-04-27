@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit'
-const initialState = { todos: [], filter: '' }
+import { createSlice, nanoid } from '@reduxjs/toolkit'
+const initialState = { todoItems: [], filterStr: '' }
 //==============================================//
 
 // 1. Створення слайса
@@ -25,19 +25,31 @@ const todoSlice = createSlice({
 	// 4 етап
 
 	reducers: {
-		addTodo: (state, action) => {
-			state.todos.push(action.payload)
+		addTodo: {
+			reducer: (state, action) => {
+				state.todoItems.push(action.payload)
+			},
+			prepare: title => {
+				return {
+					payload: {
+						title,
+						completed: false,
+						id: nanoid(),
+						time: new Date().toLocaleTimeString(),
+					},
+				}
+			},
 		},
 		deleteTodo: (state, { payload }) => {
-			const item = state.todos.findIndex(item => item.id === payload)
-			state.todos.splice(item, 1)
+			const item = state.todoItems.findIndex(item => item.id === payload)
+			state.todoItems.splice(item, 1)
 		},
 		toggleTodo: (state, { payload }) => {
-			const item = state.todos.find(item => item.id === payload)
+			const item = state.todoItems.find(item => item.id === payload)
 			item.completed = !item.completed
 		},
 		setFilter: (state, { payload }) => {
-			state.filter = payload
+			state.filterStr = payload
 		},
 	},
 })
