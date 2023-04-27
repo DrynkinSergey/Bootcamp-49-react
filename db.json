@@ -1,24 +1,54 @@
 {
 	"todos": [
 		{
-			"title": "js",
-			"completed": false,
-			"id": 3
+			"id": 1,
+			"title": "Придбати молоко",
+			"completed": false
 		},
 		{
-			"title": "redux",
-			"completed": false,
-			"id": 3
+			"id": 2,
+			"title": "Зробити ранкову зарядку",
+			"completed": false
 		},
 		{
-			"title": "react",
-			"completed": false,
-			"id": 3
+			"id": 3,
+			"title": "Прочитати книгу",
+			"completed": true
 		},
 		{
-			"title": "thunk",
-			"completed": false,
-			"id": 3
+			"id": 4,
+			"title": "Зустрітися з друзями",
+			"completed": false
+		},
+		{
+			"id": 5,
+			"title": "Навчитися грати на гітарі",
+			"completed": false
+		},
+		{
+			"id": 6,
+			"title": "Піти на заняття йоги",
+			"completed": true
+		},
+		{
+			"id": 7,
+			"title": "Вивчити нову мову програмування",
+			"completed": false
+		},
+		{
+			"id": 8,
+			"title": "Зробити ремонт в квартирі",
+			"completed": false
+		},
+		{
+			"id": 9,
+			"title": "Знайти нову роботу",
+			"completed": false
+		},
+		{
+			"id": 10,
+			"title": "Навчитися готувати суші",
+			"completed": false
 		}
 	]
 }

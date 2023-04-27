@@ -1,45 +1,26 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit'
+import axios from 'axios'
 const initialState = { todoItems: [], filterStr: '' }
-//==============================================//
-
-// 1. Створення слайса
-// 2. Вказуємо ім'я слайса
-// 3. Вказуємо початковий стан
-// 4. Створюємо наші редьюсери / єкшени
-// 5. Експортую мої екшени в зовнішній світ
-// 6. Експортую редьюсер до гори
-
-//==============================================//
-
-// 1 етап
-
+export const fetchUsersThunk = () => dispatch => {
+	axios
+		.get('http://localhost:3002/todos')
+		.then(res => dispatch(addTodo(res.data)))
+}
+export const fetchDeleteUserThunk = id => dispatch => {
+	axios
+		.delete(`http://localhost:3002/todos/${id}`)
+		.then(res => dispatch(deleteTodo(id)))
+}
 const todoSlice = createSlice({
-	// 2 етап
-
 	name: '@@todos',
-
-	// 3 етап
 
 	initialState,
 
-	// 4 етап
-
 	reducers: {
-		addTodo: {
-			reducer: (state, action) => {
-				state.todoItems.push(action.payload)
-			},
-			prepare: title => {
-				return {
-					payload: {
-						title,
-						completed: false,
-						id: nanoid(),
-						time: new Date().toLocaleTimeString(),
-					},
-				}
-			},
+		addTodo: (state, action) => {
+			state.todoItems.push(...action.payload)
 		},
+
 		deleteTodo: (state, { payload }) => {
 			const item = state.todoItems.findIndex(item => item.id === payload)
 			state.todoItems.splice(item, 1)

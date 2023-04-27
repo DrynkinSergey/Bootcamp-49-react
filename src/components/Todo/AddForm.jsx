@@ -1,16 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { addTodoAC } from '../../redux/Todo/actions'
-import { addTodo, setFilter } from '../../redux/Todo/todoSlice'
+import { addTodo, fetchUsersThunk, setFilter } from '../../redux/Todo/todoSlice'
 
 export const AddForm = ({ onSubmit }) => {
 	const dispatch = useDispatch()
 	// const filter = useSelector(state => state.todoList.filterStr)
-
 	const handleSubmit = e => {
 		e.preventDefault()
 		if (e.target.addTodo.value.trim()) {
 			const title = e.target.addTodo.value.trim()
-			dispatch(addTodo(title))
+			dispatch(fetchUsersThunk())
 			e.target.reset()
 			e.target.focus()
 		}
