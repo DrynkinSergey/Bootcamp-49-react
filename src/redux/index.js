@@ -1,15 +1,11 @@
-import { combineReducers, createStore } from 'redux'
-import { countReducer } from './Counter/reducer'
+import { counterReducer } from './Counter/counterSlice'
 import { todoReducer } from './Todo/reducer'
+import { configureStore } from '@reduxjs/toolkit'
 
-// 1 rootReducer - створюємо один редьюсер
-
-const rootReducer = combineReducers({
-	counter: countReducer,
-	todoList: todoReducer,
+export const store = configureStore({
+	reducer: {
+		counter: counterReducer,
+		todoList: todoReducer,
+	},
+	devTools: process.env.NODE_ENV !== 'production',
 })
-export const store = createStore(
-	// 2 передаємо рутРедьюсер до нашого стору
-	rootReducer,
-	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-)
