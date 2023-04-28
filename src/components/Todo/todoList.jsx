@@ -1,13 +1,19 @@
 import { SingleTodo } from './singleTodo'
-import { useSelector } from 'react-redux'
-import { selectTodos } from '../../redux/Todo/selectors'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectLoading, selectTodos } from '../../redux/Todo/selectors'
+import { useEffect } from 'react'
+import { getTodosThunk } from '../../redux/Todo/todoSlice'
 
 export const TodoList = () => {
 	const todos = useSelector(selectTodos)
+	const loading = useSelector(selectLoading)
+	const dispatch = useDispatch()
 	// const todos = useSelector(state => state.todoList.todos)
-
+	useEffect(() => {
+		dispatch(getTodosThunk())
+	}, [dispatch])
 	const ViewData = () =>
-		todos.map(todo => <SingleTodo key={todo.id} {...todo} />)
+		todos.map(todo => <SingleTodo key={todo.id} {...todo} />).reverse()
 
 	return (
 		<div className='font-josefin bg-darkMain shadow-mainDark'>

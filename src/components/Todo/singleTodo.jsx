@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import icon from '../../assets/images/icon-check.svg'
-import { useDispatch } from 'react-redux'
-import { deleteTodo, toggleTodo } from '../../redux/Todo/todoSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteTodoThunk, toggleTodo } from '../../redux/Todo/todoSlice'
+import { selectLoading } from '../../redux/Todo/selectors'
 export const SingleTodo = ({ id, title, completed }) => {
 	const dispatch = useDispatch()
 
 	const stylesActive = completed
 		? 'bg-gradient-to-br from-checkboxFrom to-checkboxTo'
 		: ''
+
 	return (
 		<li className='group  list-none cursor-pointer  py-4  border-b-white/10 border-b-[1px] text-white/80 grid   grid-cols-todo items-center'>
 			<label className='relative inline-block cursor-pointer'>
@@ -34,7 +36,7 @@ export const SingleTodo = ({ id, title, completed }) => {
 			</span>
 			<button
 				className=' transition-all hidden text-white/20 hover:text-white  group-hover:block mx-auto'
-				onClick={() => dispatch(deleteTodo(id))}
+				onClick={() => dispatch(deleteTodoThunk(id))}
 			>
 				X
 			</button>

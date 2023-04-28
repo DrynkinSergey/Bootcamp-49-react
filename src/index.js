@@ -24,12 +24,12 @@ a{
 
 root.render(
 	<>
-		<PersistGate loading={null} persistor={persistor}>
-			<Provider store={store}>
-				<App />
-				<Global />
-				<ToastContainer autoClose={2000} />
-			</Provider>
-		</PersistGate>
+		{/* <PersistGate loading={null} persistor={persistor}> */}
+		<Provider store={store}>
+			<App />
+			<Global />
+			<ToastContainer autoClose={2000} />
+		</Provider>
+		{/* </PersistGate> */}
 	</>
 )
