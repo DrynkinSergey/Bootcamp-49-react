@@ -24,6 +24,11 @@
       "id": 5,
       "title": "Навчитися грати на гітарі",
       "completed": false
+    },
+    {
+      "title": "react",
+      "completed": false,
+      "id": 6
     }
   ]
 }

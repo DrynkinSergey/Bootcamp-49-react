@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { addTodo, addTodoThunk } from '../../redux/Todo/todoSlice'
+import { addTodoThunk } from '../../redux/Todo/operations'
 
 export const AddForm = ({ onSubmit }) => {
 	const dispatch = useDispatch()
