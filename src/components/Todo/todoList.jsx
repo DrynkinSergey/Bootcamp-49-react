@@ -1,5 +1,4 @@
 import { SingleTodo } from './singleTodo'
-import { Filter } from './Filter'
 import { useSelector } from 'react-redux'
 import { selectTodos } from '../../redux/Todo/selectors'
 
@@ -14,7 +13,6 @@ export const TodoList = () => {
 		<div className='font-josefin bg-darkMain shadow-mainDark'>
 			<ul className='rounded-md overflow-hidden'>
 				<ViewData />
-				<Filter />
 			</ul>
 		</div>
 	)

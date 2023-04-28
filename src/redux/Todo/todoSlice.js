@@ -1,16 +1,7 @@
-import { createSlice, nanoid } from '@reduxjs/toolkit'
-import axios from 'axios'
+import { createSlice } from '@reduxjs/toolkit'
+
 const initialState = { todoItems: [], filterStr: '' }
-export const fetchUsersThunk = () => dispatch => {
-	axios
-		.get('http://localhost:3002/todos')
-		.then(res => dispatch(addTodo(res.data)))
-}
-export const fetchDeleteUserThunk = id => dispatch => {
-	axios
-		.delete(`http://localhost:3002/todos/${id}`)
-		.then(res => dispatch(deleteTodo(id)))
-}
+
 const todoSlice = createSlice({
 	name: '@@todos',
 
@@ -18,7 +9,7 @@ const todoSlice = createSlice({
 
 	reducers: {
 		addTodo: (state, action) => {
-			state.todoItems.push(...action.payload)
+			state.todoItems.push(action.payload)
 		},
 
 		deleteTodo: (state, { payload }) => {
@@ -35,10 +26,6 @@ const todoSlice = createSlice({
 	},
 })
 
-// 5 етап
-
 export const { addTodo, deleteTodo, toggleTodo, setFilter } = todoSlice.actions
-
-// 6 етап
 
 export const todoReducer = todoSlice.reducer
