@@ -1,17 +1,8 @@
-import { useDispatch } from 'react-redux'
-import { addTodoThunk } from '../../redux/Todo/operations'
-import { changeSearch } from '../../redux/Todo/todoSlice'
-
 export const AddForm = ({ onSubmit }) => {
-	const dispatch = useDispatch()
-
-	// const filter = useSelector(state => state.todoList.filterStr)
 	const handleSubmit = e => {
 		e.preventDefault()
 		if (e.target.addTodo.value.trim()) {
 			const title = e.target.addTodo.value.trim()
-			// dispatch(addTodo({ title, completed: false, id: new Date().getTime() }))
-			dispatch(addTodoThunk(title))
 			e.target.reset()
 			e.target.focus()
 		}
@@ -22,7 +13,6 @@ export const AddForm = ({ onSubmit }) => {
 			onSubmit={handleSubmit}
 		>
 			<input
-				onChange={e => dispatch(changeSearch(e.target.value))}
 				autoComplete='off'
 				placeholder='Add some todo....'
 				className=' px-4  w-2/3 rounded-md mr-4 text-black'

@@ -2,10 +2,12 @@ import { configureStore } from '@reduxjs/toolkit'
 import { todoReducer } from './Todo/todoSlice'
 import { filterReducer } from './Filter/filterSlice'
 import { themeReducer } from './Theme/themeSlice'
+import { authReducer } from './Auth/authSlice'
 
 export const store = configureStore({
 	reducer: {
-		todoList: todoReducer,
+		auth: authReducer,
+		tasks: todoReducer,
 		filter: filterReducer,
 		theme: themeReducer,
 	},

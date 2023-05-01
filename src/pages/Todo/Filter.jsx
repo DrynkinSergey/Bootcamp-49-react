@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { setFilter } from '../../redux/Filter/filterSlice'
 import { selectFilter, selectUncompletedReselect } from '../../redux/selectors'
-import { removeCompletedTodosThunk } from '../../redux/Todo/operations'
 
 export const Filter = () => {
 	const dispatch = useDispatch()
@@ -41,7 +40,7 @@ export const Filter = () => {
 				</span>
 			</div>
 			<span
-				onClick={() => dispatch(removeCompletedTodosThunk())}
+				// onClick={() => dispatch(removeCompletedTodosThunk())}
 				className={`${classes} order-2 sm:order-2`}
 			>
 				Clear Completed

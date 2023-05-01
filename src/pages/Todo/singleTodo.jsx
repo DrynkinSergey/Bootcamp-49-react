@@ -1,11 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import icon from '../../assets/images/icon-check.svg'
-import { useDispatch, useSelector } from 'react-redux'
-import { selectLoading } from '../../redux/selectors'
-import { removeTodoThunk, toggleTodoThunk } from '../../redux/Todo/operations'
 export const SingleTodo = ({ id, title, completed }) => {
-	const dispatch = useDispatch()
-
 	const stylesActive = completed
 		? 'bg-gradient-to-br from-checkboxFrom to-checkboxTo'
 		: ''
@@ -14,7 +9,6 @@ export const SingleTodo = ({ id, title, completed }) => {
 		<li className='group  list-none cursor-pointer  py-4  border-b-white/10 border-b-[1px] text-white/80 grid   grid-cols-todo items-center'>
 			<label className='relative inline-block cursor-pointer'>
 				<input
-					onChange={() => dispatch(toggleTodoThunk({ id, title, completed }))}
 					type='checkbox'
 					className='absolute opacity-0 cursor-pointer h-0 w-0'
 					checked={completed}
@@ -34,10 +28,7 @@ export const SingleTodo = ({ id, title, completed }) => {
 			>
 				{title}
 			</span>
-			<button
-				className=' transition-all hidden text-white/20 hover:text-white  group-hover:block mx-auto'
-				onClick={() => dispatch(removeTodoThunk(id))}
-			>
+			<button className=' transition-all hidden text-white/20 hover:text-white  group-hover:block mx-auto'>
 				X
 			</button>
 		</li>

@@ -9,6 +9,7 @@ import './index.css'
 import { Provider } from 'react-redux'
 import { persistor, store } from './redux/store'
 import { PersistGate } from 'redux-persist/integration/react'
+import { BrowserRouter } from 'react-router-dom'
 const root = ReactDOM.createRoot(document.getElementById('root'))
 const Global = createGlobalStyle`
 body{
@@ -25,11 +26,14 @@ a{
 root.render(
 	<>
 		{/* <PersistGate loading={null} persistor={persistor}> */}
-		<Provider store={store}>
-			<App />
-			<Global />
-			<ToastContainer autoClose={2000} />
-		</Provider>
+		<BrowserRouter>
+			<Provider store={store}>
+				<App />
+				<Global />
+				<ToastContainer autoClose={2000} />
+			</Provider>
+		</BrowserRouter>
+
 		{/* </PersistGate> */}
 	</>
 )
