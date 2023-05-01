@@ -13,12 +13,9 @@ import { Filter } from './Filter'
 export const TodoList = () => {
 	const tasks = useSelector(selectFilteredDataReselect)
 
-	const loading = useSelector(selectLoading)
 	const dispatch = useDispatch()
 	// const todos = useSelector(state => state.todoList.todos)
-	useEffect(() => {
-		// dispatch(fetchTodosThunk())
-	}, [dispatch])
+
 	const ViewData = () =>
 		tasks.map(todo => <SingleTodo key={todo.id} {...todo} />).reverse()
 

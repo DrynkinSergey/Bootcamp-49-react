@@ -1,6 +1,9 @@
 import React from 'react'
 import icon from '../../assets/images/icon-check.svg'
-export const SingleTodo = ({ id, title, completed }) => {
+import { useDispatch } from 'react-redux'
+import { deleteTask } from '../../redux/Todo/operations'
+export const SingleTodo = ({ id, text, completed }) => {
+	const dispatch = useDispatch()
 	const stylesActive = completed
 		? 'bg-gradient-to-br from-checkboxFrom to-checkboxTo'
 		: ''
@@ -26,9 +29,12 @@ export const SingleTodo = ({ id, title, completed }) => {
 						: 'transition-all'
 				}
 			>
-				{title}
+				{text}
 			</span>
-			<button className=' transition-all hidden text-white/20 hover:text-white  group-hover:block mx-auto'>
+			<button
+				onClick={() => dispatch(deleteTask(id))}
+				className=' transition-all hidden text-white/20 hover:text-white  group-hover:block mx-auto'
+			>
 				X
 			</button>
 		</li>

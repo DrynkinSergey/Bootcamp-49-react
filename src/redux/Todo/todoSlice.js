@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { fetchTasks } from './operations'
 
 const initialState = {
 	items: [],
@@ -9,7 +10,13 @@ const initialState = {
 const todoSlice = createSlice({
 	name: '@@tasks',
 	initialState,
-	extraReducers: {},
+	extraReducers: {
+		[fetchTasks.fulfilled](state, action) {
+			state.isLoading = false
+			state.error = null
+			state.items = action.payload
+		},
+	},
 })
 
 export const todoReducer = todoSlice.reducer
