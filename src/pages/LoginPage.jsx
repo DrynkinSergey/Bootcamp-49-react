@@ -12,18 +12,18 @@ export const LoginPage = () => {
 	return (
 		<div className='flex justify-center items-center h-screen bg-darkMain'>
 			<form
-				className='flex gap-6 text-white flex-col w-1/4 p-10 border-blue-600 border-2 rounded-lg'
+				className='flex gap-6 text-white flex-col w-1/3 p-10 border-blue-600 border-2 rounded-lg'
 				onSubmit={handleSubmit}
 			>
 				<h1 className='text-center text-2xl'>Login Form</h1>
 				<input
-					className='border px-2'
+					className='border px-2 text-black'
 					name='email'
 					placeholder='Email...'
 					type='text'
 				/>
 				<input
-					className='border px-2'
+					className='border px-2 text-black'
 					name='password'
 					placeholder='Password...'
 					type='password'
