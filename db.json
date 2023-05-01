@@ -8,11 +8,11 @@
     {
       "id": 2,
       "title": "Зробити ранкову зарядку",
-      "completed": false
+      "completed": true
     },
     {
       "title": "4",
-      "completed": false,
+      "completed": true,
       "id": 6
     }
   ]

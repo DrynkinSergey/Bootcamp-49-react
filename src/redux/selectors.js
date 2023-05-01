@@ -3,12 +3,17 @@ import { createSelector } from '@reduxjs/toolkit'
 export const selectTodos = state => state.todoList.todoItems
 export const selectLoading = state => state.todoList.loading
 export const selectFilter = state => state.filter
-
 export const selectUncompleted = state => {
 	// console.log('filter')
 	const todos = selectTodos(state)
 	return todos.reduce((total, todo) => (todo.completed ? total : total + 1), 0)
 }
+
+
+export const selectTheme = createSelector([state => state.theme], theme => {
+	console.log('theme is changed')
+	return theme
+})
 
 export const selectUncompletedReselect = createSelector(
 	[state => state.todoList.todoItems],
