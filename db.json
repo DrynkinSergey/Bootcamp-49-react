@@ -11,22 +11,7 @@
       "completed": false
     },
     {
-      "id": 3,
-      "title": "Прочитати книгу",
-      "completed": true
-    },
-    {
-      "id": 4,
-      "title": "Зустрітися з друзями",
-      "completed": false
-    },
-    {
-      "id": 5,
-      "title": "Навчитися грати на гітарі",
-      "completed": false
-    },
-    {
-      "title": "react",
+      "title": "4",
       "completed": false,
       "id": 6
     }

@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react'
 import icon from '../../assets/images/icon-check.svg'
 import { useDispatch, useSelector } from 'react-redux'
-import { toggleTodo } from '../../redux/Todo/todoSlice'
-import { selectLoading } from '../../redux/Todo/selectors'
-import { removeTodoThunk } from '../../redux/Todo/operations'
+import { selectLoading } from '../../redux/selectors'
+import { removeTodoThunk, toggleTodoThunk } from '../../redux/Todo/operations'
 export const SingleTodo = ({ id, title, completed }) => {
 	const dispatch = useDispatch()
 
@@ -15,7 +14,7 @@ export const SingleTodo = ({ id, title, completed }) => {
 		<li className='group  list-none cursor-pointer  py-4  border-b-white/10 border-b-[1px] text-white/80 grid   grid-cols-todo items-center'>
 			<label className='relative inline-block cursor-pointer'>
 				<input
-					onChange={() => dispatch(toggleTodo(id))}
+					onChange={() => dispatch(toggleTodoThunk({ id, title, completed }))}
 					type='checkbox'
 					className='absolute opacity-0 cursor-pointer h-0 w-0'
 					checked={completed}

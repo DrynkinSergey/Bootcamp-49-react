@@ -1,13 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
-axios.defaults.baseURL = 'https://644abd9da8370fb32156e841.mockapi.io/'
+import { toggleTodo } from './todoSlice'
+axios.defaults.baseURL = 'http://localhost:3002'
 
 export const fetchTodosThunk = createAsyncThunk(
 	'@@todos/fetchTodos',
 	async (_, thunkAPI) => {
 		try {
 			const response = await axios.get('/todos')
-			console.log('server is done =>>>>>', response.data)
 			return response.data
 		} catch (error) {
 			thunkAPI.rejectWithValue(error)
@@ -32,7 +32,8 @@ export const removeTodoThunk = createAsyncThunk(
 	async (id, thunkAPI) => {
 		try {
 			await axios.delete(`/todos/${id}`)
-			return id
+			thunkAPI.dispatch(fetchTodosThunk())
+			// return id
 		} catch (error) {
 			thunkAPI.rejectWithValue(error)
 		}
@@ -45,5 +46,40 @@ export const removeTodoThunk = createAsyncThunk(
 				return false
 			}
 		},
+	}
+)
+
+export const removeCompletedTodosThunk = createAsyncThunk(
+	'@@todos/removeCompleted',
+	async (_, thunkAPI) => {
+		try {
+			const todoCompleted = thunkAPI
+				.getState()
+				.todoList.todoItems.filter(todo => todo.completed)
+				.map(todo => todo.id)
+			console.log(todoCompleted)
+			const request = todoCompleted.map(id => {
+				return axios.delete(`/todos/${id}`)
+			})
+			Promise.all(request)
+				.then(() => thunkAPI.dispatch(fetchTodosThunk()))
+				.catch(e => console.log(e))
+		} catch (error) {
+			thunkAPI.rejectWithValue(error)
+		}
+	}
+)
+
+export const toggleTodoThunk = createAsyncThunk(
+	'@@todos/toggle',
+	async (todo, thunkAPI) => {
+		try {
+			await axios.patch(`/todos/${todo.id}`, {
+				completed: !todo.completed,
+			})
+			thunkAPI.dispatch(toggleTodo(todo.id))
+		} catch (error) {
+			thunkAPI.rejectWithValue(error)
+		}
 	}
 )
