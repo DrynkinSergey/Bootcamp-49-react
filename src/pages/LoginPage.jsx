@@ -10,22 +10,25 @@ export const LoginPage = () => {
 		form.reset()
 	}
 	return (
-		<div>
-			<h1>login</h1>
-			<form className='flex gap-2 flex-col w-1/4 p-4' onSubmit={handleSubmit}>
+		<div className='flex justify-center items-center h-screen bg-darkMain'>
+			<form
+				className='flex gap-6 text-white flex-col w-1/4 p-10 border-blue-600 border-2 rounded-lg'
+				onSubmit={handleSubmit}
+			>
+				<h1 className='text-center text-2xl'>Login Form</h1>
 				<input
-					className='border'
+					className='border px-2'
 					name='email'
-					placeholder='email'
+					placeholder='Email...'
 					type='text'
 				/>
 				<input
-					className='border'
+					className='border px-2'
 					name='password'
-					placeholder='password'
+					placeholder='Password...'
 					type='password'
 				/>
-				<button className='border'>Login</button>
+				<button className='border bg-blue-600 rounded-md'>Login</button>
 			</form>
 		</div>
 	)

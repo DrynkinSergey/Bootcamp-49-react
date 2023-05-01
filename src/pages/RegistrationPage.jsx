@@ -11,23 +11,32 @@ export const RegistrationPage = () => {
 		const password = form.password.value
 	}
 	return (
-		<div>
-			<h1>Registration</h1>
-			<form className='flex gap-2 flex-col w-1/4 p-4' onSubmit={handleSubmit}>
-				<input className='border' name='name' type='text' placeholder='name' />
+		<div className='flex justify-center items-center h-screen bg-darkMain'>
+			<form
+				className='flex gap-6 text-white flex-col w-1/4 p-10 border-blue-600 border-2 rounded-lg'
+				onSubmit={handleSubmit}
+			>
+				<h1 className='text-center text-2xl'>Registration form </h1>
 				<input
-					className='border'
-					name='email'
+					className='border px-2'
+					name='name'
 					type='text'
-					placeholder='email'
+					placeholder='Name...'
 				/>
 				<input
-					className='border'
+					className='border px-2'
+					name='email'
+					autoComplete='off'
+					type='text'
+					placeholder='Email...'
+				/>
+				<input
+					className='border px-2'
 					name='password'
 					type='password'
-					placeholder='password'
+					placeholder='Password...'
 				/>
-				<button className='border'>SignUP</button>
+				<button className='border bg-blue-600 rounded-md'>SignUP</button>
 			</form>
 		</div>
 	)
