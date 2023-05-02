@@ -9,6 +9,7 @@ export const SingleTodo = ({ id, title, completed }) => {
 		<li className='group  list-none cursor-pointer  py-4  border-b-white/10 border-b-[1px] text-white/80 grid   grid-cols-todo items-center'>
 			<label className='relative inline-block cursor-pointer'>
 				<input
+					onChange={() => {}}
 					type='checkbox'
 					className='absolute opacity-0 cursor-pointer h-0 w-0'
 					checked={completed}

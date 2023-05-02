@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import { registrationThunk } from '../redux/Auth/authOperations'
 export const RegistrationPage = () => {
 	const dispatch = useDispatch()
 
@@ -9,6 +10,7 @@ export const RegistrationPage = () => {
 		const name = form.name.value
 		const email = form.email.value
 		const password = form.password.value
+		dispatch(registrationThunk({ name, email, password }))
 	}
 	return (
 		<div className='flex justify-center items-center h-screen bg-darkMain'>

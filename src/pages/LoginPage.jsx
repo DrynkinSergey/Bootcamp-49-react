@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import { loginThunk } from '../redux/Auth/authOperations'
 export const LoginPage = () => {
 	const dispatch = useDispatch()
 	const handleSubmit = e => {
@@ -7,6 +8,7 @@ export const LoginPage = () => {
 		const form = e.target
 		const email = form.email.value
 		const password = form.password.value
+		dispatch(loginThunk({ email, password }))
 		form.reset()
 	}
 	return (
