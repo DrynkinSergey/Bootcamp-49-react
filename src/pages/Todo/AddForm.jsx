@@ -1,8 +1,13 @@
+import { useDispatch } from 'react-redux'
+import { addTaskThunk } from '../../redux/Todo/operations'
+
 export const AddForm = ({ onSubmit }) => {
+	const dispatch = useDispatch()
 	const handleSubmit = e => {
 		e.preventDefault()
 		if (e.target.addTodo.value.trim()) {
-			const title = e.target.addTodo.value.trim()
+			const text = e.target.addTodo.value.trim()
+			dispatch(addTaskThunk(text))
 			e.target.reset()
 			e.target.focus()
 		}

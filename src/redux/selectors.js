@@ -5,6 +5,7 @@ export const selectLoading = state => state.tasks.loading
 export const selectFilter = state => state.filter
 export const selectUser = state => state.auth.user
 export const selectIsOnline = state => state.auth.online
+export const selectUserLoading = state => state.auth.loading
 
 export const selectTheme = createSelector([state => state.theme], theme => {
 	return theme

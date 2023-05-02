@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import bgDark from './../../assets/images/bg-desktop-dark.jpg'
 import bgLight from './../../assets/images/bg-desktop-light.jpg'
 import bgMobile from './../../assets/images/bg-mobile-dark.jpg'
@@ -7,11 +7,14 @@ import { TodoList } from './todoList'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectTheme } from '../../redux/selectors'
 import { setTheme } from '../../redux/Theme/themeSlice'
+import { fetchTasksThunk } from '../../redux/Todo/operations'
 
 export const CuteTodo = () => {
 	const theme = useSelector(selectTheme)
 	const dispatch = useDispatch()
-
+	useEffect(() => {
+		dispatch(fetchTasksThunk())
+	}, [dispatch])
 	const bgImage = useMemo(
 		() => (
 			<>

@@ -1,15 +1,28 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { loginThunk } from '../redux/Auth/authOperations'
+import { useNavigate } from 'react-router-dom'
+import { selectUserLoading } from '../redux/selectors'
 export const LoginPage = () => {
+	const navigate = useNavigate()
 	const dispatch = useDispatch()
+	const isLoadingUser = useSelector(selectUserLoading)
 	const handleSubmit = e => {
 		e.preventDefault()
 		const form = e.target
 		const email = form.email.value
 		const password = form.password.value
 		dispatch(loginThunk({ email, password }))
+			.then(() => navigate('/tasks'))
+			.catch(() => alert('Try again'))
 		form.reset()
+	}
+	if (isLoadingUser) {
+		return (
+			<div className='flex justify-center items-center h-screen bg-darkMain'>
+				<h1 className='text-white text-4xl'>Loading...</h1>
+			</div>
+		)
 	}
 	return (
 		<div className='flex justify-center items-center h-screen bg-darkMain'>
