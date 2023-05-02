@@ -27,6 +27,7 @@ export const LoginPage = () => {
 	return (
 		<div className='flex justify-center items-center h-screen bg-darkMain'>
 			<form
+
 				className='flex gap-6 text-white flex-col w-1/3 p-10 border-blue-600 border-2 rounded-lg'
 				onSubmit={handleSubmit}
 			>

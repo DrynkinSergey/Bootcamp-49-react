@@ -6,7 +6,7 @@ import { logoutThunk } from '../redux/Auth/authOperations'
 
 export const NavBar = () => {
 	const isOnline = useSelector(selectIsOnline)
-	const { name } = useSelector(selectUser)
+	const { name, email } = useSelector(selectUser)
 	const dispatch = useDispatch()
 	const location = useLocation()
 	useEffect(() => {
@@ -28,7 +28,7 @@ export const NavBar = () => {
 			{isOnline ? (
 				<div className='flex gap-4'>
 					<h1>
-						Welcome, <span className='text-[#3258f0]'>{name}</span>
+						Welcome, <span className='text-[#3258f0]'>{email}</span>
 					</h1>
 					<button
 						onClick={() => dispatch(logoutThunk())}
