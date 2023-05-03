@@ -26,7 +26,7 @@ a{
 root.render(
 	<>
 		<PersistGate loading={null} persistor={persistor}>
-			<BrowserRouter>
+			<BrowserRouter basename='/'>
 				<Provider store={store}>
 					<App />
 					<Global />

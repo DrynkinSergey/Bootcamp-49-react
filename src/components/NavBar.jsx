@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { selectIsOnline, selectUser } from '../redux/selectors'
 import { logoutThunk } from '../redux/Auth/authOperations'
 
 export const NavBar = () => {
 	const isOnline = useSelector(selectIsOnline)
+	const navigate = useNavigate()
 	const { name, email } = useSelector(selectUser)
 	const dispatch = useDispatch()
 	const location = useLocation()
@@ -23,9 +24,11 @@ export const NavBar = () => {
 				<NavLink className='hover:text-[#3258f0]' to='/tasks'>
 					Tasks
 				</NavLink>
-				<NavLink className='hover:text-[#3258f0]' to='/login'>
-					Login
-				</NavLink>
+				{isOnline && (
+					<NavLink className='hover:text-[#3258f0]' to='/about'>
+						About
+					</NavLink>
+				)}
 			</div>
 
 			{isOnline ? (
