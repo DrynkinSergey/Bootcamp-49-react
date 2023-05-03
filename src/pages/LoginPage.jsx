@@ -1,10 +1,7 @@
-import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginThunk } from '../redux/Auth/authOperations'
-import { useNavigate } from 'react-router-dom'
 import { selectUserLoading } from '../redux/selectors'
 export const LoginPage = () => {
-	const navigate = useNavigate()
 	const dispatch = useDispatch()
 	const isLoadingUser = useSelector(selectUserLoading)
 	const handleSubmit = e => {
@@ -13,8 +10,7 @@ export const LoginPage = () => {
 		const email = form.email.value
 		const password = form.password.value
 		dispatch(loginThunk({ email, password }))
-			.then(() => navigate('/tasks'))
-			.catch(() => alert('Try again'))
+
 		form.reset()
 	}
 	if (isLoadingUser) {
@@ -27,7 +23,6 @@ export const LoginPage = () => {
 	return (
 		<div className='flex justify-center items-center h-screen bg-darkMain'>
 			<form
-
 				className='flex gap-6 text-white flex-col w-1/3 p-10 border-blue-600 border-2 rounded-lg'
 				onSubmit={handleSubmit}
 			>

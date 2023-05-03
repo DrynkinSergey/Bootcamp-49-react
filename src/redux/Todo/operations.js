@@ -32,7 +32,7 @@ export const deleteTaskThunk = createAsyncThunk(
 			await axios.delete(`/tasks/${id}`)
 			dispatch(fetchTasksThunk())
 		} catch (error) {
-			rejectWithValue(error)
+			rejectWithValue(error.message)
 		}
 	}
 )

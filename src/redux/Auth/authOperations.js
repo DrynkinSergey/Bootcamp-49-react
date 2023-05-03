@@ -19,7 +19,7 @@ export const registrationThunk = createAsyncThunk(
 			setToken(res.data.token)
 			return res.data
 		} catch (error) {
-			return thunkAPI.rejectWithValue(error)
+			return thunkAPI.rejectWithValue(error.message)
 		}
 	}
 )
@@ -32,7 +32,7 @@ export const loginThunk = createAsyncThunk(
 			console.log(res)
 			return res.data
 		} catch (error) {
-			return thunkAPI.rejectWithValue(error)
+			return thunkAPI.rejectWithValue(error.message)
 		}
 	}
 )
@@ -44,7 +44,24 @@ export const logoutThunk = createAsyncThunk(
 			await axios.post('users/logout')
 			clearToken()
 		} catch (error) {
-			return thunkAPI.rejectWithValue(error)
+			return thunkAPI.rejectWithValue(error.message)
+		}
+	}
+)
+
+export const refreshThunk = createAsyncThunk(
+	'@@auth/refresh',
+	async (_, thunkAPI) => {
+		const savedToken = thunkAPI.getState().auth.token
+		if (savedToken === null) {
+			return thunkAPI.rejectWithValue('Token is not find')
+		}
+		try {
+			setToken(savedToken)
+			const res = await axios.get('/users/me')
+			return res.data
+		} catch (error) {
+			return thunkAPI.rejectWithValue(error.message)
 		}
 	}
 )
