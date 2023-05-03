@@ -45,12 +45,12 @@ export const NavBar = () => {
 				</div>
 			) : (
 				<div>
-					<NavLink className='hover:text-[#3258f0]' to='/login'>
+					<NavLink className='hover:text-[#3258f0]' to='/Login'>
 						<span>login</span>
 					</NavLink>{' '}
 					|
 					<NavLink className='hover:text-[#3258f0]' to='/registration'>
-						<span> signUp</span>
+						<span> SignUp</span>
 					</NavLink>
 				</div>
 			)}
