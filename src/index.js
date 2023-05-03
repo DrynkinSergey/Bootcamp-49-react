@@ -11,28 +11,12 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { BrowserRouter } from 'react-router-dom'
 import { persistor, store } from './redux/store'
 const root = ReactDOM.createRoot(document.getElementById('root'))
-const Global = createGlobalStyle`
-body{
-  font-size: 24px;
-}
-li {
-  list-style: none;
-}
-a{
-	color: inherit;
-}
-`
 
 root.render(
 	<>
-		<PersistGate loading={null} persistor={persistor}>
-			<BrowserRouter basename='/'>
-				<Provider store={store}>
-					<App />
-					<Global />
-					<ToastContainer autoClose={2000} />
-				</Provider>
-			</BrowserRouter>
-		</PersistGate>
+		<Provider store={store}>
+			<App />
+			<ToastContainer autoClose={2000} />
+		</Provider>
 	</>
 )
