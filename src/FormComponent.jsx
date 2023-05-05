@@ -25,10 +25,10 @@ const FormComponent = () => {
 			{() => (
 				<Form className='flex bg-blue-200 p-8 flex-col gap-4 border-4 w-[450px]'>
 					<h2>Send donate</h2>
-					<label htmlFor='name'>Name</label>
+					<label>Name</label>
 					<Field type='text' name='name' />
 					<ErrorMessage name='name' component='div' />
-					<label htmlFor='email'>Email</label>
+					<label>Email</label>
 					<Field type='email' name='email' />
 					<ErrorMessage name='email' component='div' />
 					<label htmlFor='amount'>Amount</label>

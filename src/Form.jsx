@@ -43,7 +43,7 @@ const Form = () => {
 	return (
 		<form
 			onSubmit={formik.handleSubmit}
-			className='flex bg-blue-200 p-8 flex-col gap-4 border-4 w-[450px]'
+			className='flex bg-blue-200 p-8 flex-col gap-4 border-4 w-full'
 		>
 			<h2>Send donate</h2>
 			<label htmlFor='name'>Name</label>
