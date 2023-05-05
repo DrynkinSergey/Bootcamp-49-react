@@ -23,7 +23,6 @@ const Form = () => {
 		}
 		return errors
 	}
-
 	const formik = useFormik({
 		initialValues: {
 			name: '',
